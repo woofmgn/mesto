@@ -1,0 +1,8 @@
+.element__like {
+  max-width: 22px;
+  width: 100%;
+  background-image: url(../../../images/element-like.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
