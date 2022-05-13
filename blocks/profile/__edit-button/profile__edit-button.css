@@ -5,6 +5,7 @@
   max-height: 24px;
   height: 100%;
   display: inline-flex;
+  background-color: #000000;
   background-image: url(../../../images/profile--edit-button.svg);
   background-size: 10px 10px;
   background-position: center;
