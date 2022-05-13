@@ -18,3 +18,19 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+@media screen and (max-width: 925px) {
+  .profile__add-button {
+    max-width: 400px;
+    width: 100%;
+    margin-top: 36px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .profile__add-button {
+    max-width: 400px;
+    width: 100%;
+    margin-top: 36px;
+  }
+}
