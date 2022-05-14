@@ -1,5 +1,4 @@
 .profile__title {
-  max-width: 100%;
   margin: 0;
   padding-right: 18px;
   font-family: 'Inter';
@@ -11,9 +10,11 @@
 
 @media screen and (max-width: 500px) {
   .profile__title {
+    max-width: 100%;
     padding-right: 10px;
     font-size: 27px;
     line-height: 33px;
     text-align: center;
+    padding-left: 28px;
   }
 }

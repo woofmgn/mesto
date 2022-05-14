@@ -3,7 +3,7 @@
   max-width: 150px;
   width: 100%;
   margin: auto;
-  padding: 50px 64px 0 64px;
+  padding: 46px 64px 0 64px;
   box-sizing: border-box;
   background-color: #000000;
   background-image: url(../../../images/profile--add-button.svg);
@@ -32,5 +32,6 @@
     max-width: 400px;
     width: 100%;
     margin-top: 36px;
+    background-size: 16px 16px;
   }
 }
