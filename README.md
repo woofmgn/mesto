@@ -15,4 +15,4 @@
 - реализация возможности добавления новых фотографий.
 - реализация возможности отмечать понравившиеся фотографии.
 
-[https://woofmgn.github.io/russian-travel/](https://woofmgn.github.io/mesto/ "https://woofmgn.github.io/mesto/")
+[https://woofmgn.github.io/mesto/](https://woofmgn.github.io/mesto/ "https://woofmgn.github.io/mesto/")
