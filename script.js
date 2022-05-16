@@ -20,8 +20,10 @@ function close() {
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
-  userName.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
+  let nameInputValue = nameInput.value;
+  let jobInputValue = jobInput.value;
+  userName.textContent = nameInputValue;
+  userJob.textContent = jobInputValue;
   close();
 }
 
