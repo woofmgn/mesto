@@ -8,8 +8,9 @@
 
 @media screen and (max-width: 500px) {
   .header {
+    max-width: 100%;
+    width: 100%;
     padding-bottom: 38px;
-    max-width: calc(100% - (5.93% + 5.93%));
     width: 100%;
   }
 }

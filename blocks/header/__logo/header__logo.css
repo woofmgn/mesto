@@ -2,10 +2,14 @@
   max-width: 142px;
   width: 100%;
   padding-bottom: 41px;
+  display: block;
 }
 
 @media screen and (max-width: 500px) {
   .header__logo {
+    max-width: 103.74px;
+    width: 100%;
     padding-bottom: 31.6px;
+    padding-left: 27px;
   }
 }
