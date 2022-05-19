@@ -1,32 +1,30 @@
-let openPopup = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let closePopup = document.querySelector('.popup__close-window');
-let formElement = document.querySelector('.popup__container');
-let userName = document.querySelector('.profile__title');
-let userJob = document.querySelector('.profile__subtitle');
-let nameInput = formElement.querySelector('.popup__form-item_type_name');
-let jobInput = formElement.querySelector('.popup__form-item_type_job');
-let saveUserInput = formElement.querySelector('.popup__form-button');
+const openPopup = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
+const closePopup = document.querySelector('.popup__close-window');
+const formElement = document.querySelector('.popup__container');
+const userName = document.querySelector('.profile__title');
+const userJob = document.querySelector('.profile__subtitle');
+const nameInput = formElement.querySelector('.popup__form-item_type_name');
+const jobInput = formElement.querySelector('.popup__form-item_type_job');
+const saveUserInput = formElement.querySelector('.popup__form-button');
 
-function open() {
+function popupOpen() {
   popup.classList.add('popup_opened');
-  nameInput.setAttribute('value', userName.textContent);
-  jobInput.setAttribute('value', userJob.textContent);
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
 }
 
-function close() {
+function popupClose() {
   popup.classList.remove('popup_opened');
 }
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
-  let nameInputValue = nameInput.value;
-  let jobInputValue = jobInput.value;
-  userName.textContent = nameInputValue;
-  userJob.textContent = jobInputValue;
-  close();
+  userName.textContent = nameInput.value;
+  userJob.textContent = jobInput.value;
+  popupClose();
 }
 
-openPopup.addEventListener('click', open);
-closePopup.addEventListener('click', close);
+openPopup.addEventListener('click', popupOpen);
+closePopup.addEventListener('click', popupClose);
 formElement.addEventListener('submit', formSubmitHandler);

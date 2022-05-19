@@ -1,7 +1,6 @@
 .header__logo {
   max-width: 142px;
   width: 100%;
-  padding-bottom: 41px;
   display: block;
 }
 
@@ -9,7 +8,6 @@
   .header__logo {
     max-width: 103.74px;
     width: 100%;
-    padding-bottom: 31.6px;
     padding-left: 27px;
   }
 }
