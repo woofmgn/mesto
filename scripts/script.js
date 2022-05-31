@@ -38,22 +38,27 @@ const saveUserInput = formElement.querySelector('.popup__form-button');
 const cardListElement = document.querySelector('.element');
 const cardTemplateElement = document.querySelector('.card-template');
 
+// создаем карточку
 const createCard = item => {
   const card = cardTemplateElement.content.querySelector('.element__item').cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
+
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
+
   return card;
 };
 
+// добавляем карточку
 const addCard = item => {
   const card = createCard(item);
 
-  cardListElement.prepend(card);
+  cardListElement.append(card);
 };
 
+// перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
 
