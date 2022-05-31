@@ -84,7 +84,7 @@ function formSubmitHandler (evt) {
 }
 
 
-
+//добавление новой карточки через кнопку
 const handleAddCardsSubmit = evt => {
   evt.preventDefault();
 
@@ -94,9 +94,9 @@ const handleAddCardsSubmit = evt => {
   };
 
   const inputValue = createCard(itemInput);
-  // console.log(inputValue);
   cardListElement.prepend(inputValue);
   popupAddCards.classList.remove('popup_opened');
+  formElementNewPlace.reset();
 }
 
 // перебираем массив при добавлении карточки
