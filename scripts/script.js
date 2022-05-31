@@ -40,6 +40,8 @@ const closePopupAddCards = popupAddCards.querySelector('.popup__close-window');
 const cardListElement = document.querySelector('.element');
 const cardTemplateElement = document.querySelector('.card-template');
 const formElementNewPlace = document.getElementsByName('new-place')[0];
+const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
+const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 
 // создаем карточку
 const createCard = item => {
@@ -61,10 +63,6 @@ const addCard = item => {
   cardListElement.append(card);
 };
 
-// перебираем массив при добавлении карточки
-initialCards.forEach(addCard);
-
-
 
 
 
@@ -85,6 +83,25 @@ function formSubmitHandler (evt) {
   ProfilePopupClose();
 }
 
+
+
+const handleAddCardsSubmit = evt => {
+  evt.preventDefault();
+
+  const itemInput = {
+    name: inputPlaceNameNewPlace.value,
+    link: inputLinkNewPlace.value
+  };
+
+  const inputValue = createCard(itemInput);
+  // console.log(inputValue);
+  cardListElement.prepend(inputValue);
+  popupAddCards.classList.remove('popup_opened');
+}
+
+// перебираем массив при добавлении карточки
+initialCards.forEach(addCard);
+
 //группа слушателей, которые работают с попапок редактирования профиля
 openPopupProfile.addEventListener('click', ProfilePopupOpen);
 closePopupProfile.addEventListener('click', ProfilePopupClose);
@@ -99,3 +116,5 @@ openPopupAddCards.addEventListener('click', EditCardPopupOpen => {
 closePopupAddCards.addEventListener('click', EditCardPopupClose => {
   popupAddCards.classList.remove('popup_opened');
 });
+
+formElementNewPlace.addEventListener('submit', handleAddCardsSubmit)
