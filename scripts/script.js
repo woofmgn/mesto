@@ -42,7 +42,7 @@ const cardTemplateElement = document.querySelector('.card-template');
 const formElementNewPlace = document.getElementsByName('new-place')[0];
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
-// const likeButton = cardListElement.querySelector('.element__like-button');
+// const deleteCardButton =
 
 // создаем карточку, прослушиваем лайки/анлайки
 const createCard = item => {
@@ -56,6 +56,10 @@ const createCard = item => {
 
   card.querySelector('.element__like-button').addEventListener('click', evt => {
     evt.target.classList.toggle('element__like-button_active');
+  });
+
+  card.querySelector('.element__trash-button').addEventListener('click', evt => {
+    evt.target.closest('.element__item').remove();
   });
   return card;
 
@@ -112,7 +116,6 @@ formElementProfile.addEventListener('submit', formSubmitHandler);
 //группа слушателей, которые работают с попапом добавления карточек
 openPopupAddCards.addEventListener('click', EditCardPopupOpen => {
   popupAddCards.classList.add('popup_opened');
-
 });
 
 closePopupAddCards.addEventListener('click', EditCardPopupClose => {
