@@ -42,9 +42,11 @@ const cardTemplateElement = document.querySelector('.card-template');
 const formElementNewPlace = document.getElementsByName('new-place')[0];
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
-// const deleteCardButton =
+const popupImage = document.querySelector('.popup-image');
+const popupImageFull = document.querySelector('.popup-image__item'); // зачем?
 
-// создаем карточку, прослушиваем лайки/анлайки
+
+// создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек
 const createCard = item => {
   const card = cardTemplateElement.content.querySelector('.element__item').cloneNode(true);
   const cardImage = card.querySelector('.element__image');
@@ -61,8 +63,12 @@ const createCard = item => {
   card.querySelector('.element__trash-button').addEventListener('click', evt => {
     evt.target.closest('.element__item').remove();
   });
-  return card;
 
+  card.querySelector('.element__image').addEventListener('click', evt => {
+
+  });
+
+  return card;
 };
 
 // добавляем карточку
@@ -120,6 +126,7 @@ openPopupAddCards.addEventListener('click', EditCardPopupOpen => {
 
 closePopupAddCards.addEventListener('click', EditCardPopupClose => {
   popupAddCards.classList.remove('popup_opened');
+  formElementNewPlace.reset();
 });
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit)
