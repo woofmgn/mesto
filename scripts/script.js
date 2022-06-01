@@ -78,22 +78,24 @@ const addCard = item => {
   cardListElement.append(card);
 };
 
-function ProfilePopupOpen() {
-  popupProfile.classList.add('popup_opened');
+function openPopup(item) {
+  item.classList.add('popup_opened');
+    if (item === popupProfile) {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-}
+  };
+};
 
-function ProfilePopupClose() {
-  popupProfile.classList.remove('popup_opened');
-}
+function closePopup(item) {
+  item.classList.remove('popup_opened');
+};
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
   ProfilePopupClose();
-}
+};
 
 
 //добавление новой карточки через кнопку
@@ -109,25 +111,29 @@ const handleAddCardsSubmit = evt => {
   cardListElement.prepend(inputValue);
   popupAddCards.classList.remove('popup_opened');
   formElementNewPlace.reset();
-}
+};
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
 //группа слушателей, которые работают с попапок редактирования профиля
-openPopupProfile.addEventListener('click', ProfilePopupOpen);
-closePopupProfile.addEventListener('click', ProfilePopupClose);
+openPopupProfile.addEventListener('click', () => {
+  openPopup(popupProfile);
+});
+closePopupProfile.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
 formElementProfile.addEventListener('submit', formSubmitHandler);
 
 //группа слушателей, которые работают с попапом добавления карточек
-openPopupAddCards.addEventListener('click', EditCardPopupOpen => {
-  popupAddCards.classList.add('popup_opened');
+openPopupAddCards.addEventListener('click', () => {
+  openPopup(popupAddCards);
 });
 
-closePopupAddCards.addEventListener('click', EditCardPopupClose => {
-  popupAddCards.classList.remove('popup_opened');
+closePopupAddCards.addEventListener('click', () => {
+  closePopup(popupAddCards);
   formElementNewPlace.reset();
 });
 
-formElementNewPlace.addEventListener('submit', handleAddCardsSubmit)
+formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
