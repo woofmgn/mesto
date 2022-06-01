@@ -44,6 +44,7 @@ const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-i
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 const popupImage = document.querySelector('.popup-image');
 const popupImageFull = document.querySelector('.popup-image__item'); // зачем?
+const popupImageTitle = document.querySelector('.popup-image__title');
 
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек
@@ -64,11 +65,19 @@ const createCard = item => {
     evt.target.closest('.element__item').remove();
   });
 
-  card.querySelector('.element__image').addEventListener('click', evt => {
-
+  cardImage.addEventListener('click', () => {
+    openPopup(popupImage);
+    imageFullScreen(item);
   });
-
+  // closePopupProfile.addEventListener('click', () => {  // починить закрытие попапа с картинкой
+  //   closePopup(popupImage);
+  // });
   return card;
+};
+
+function imageFullScreen(item) {
+  popupImageFull.src = item.link;
+  popupImageTitle.textContent = item.name;
 };
 
 // добавляем карточку
@@ -126,7 +135,7 @@ closePopupProfile.addEventListener('click', () => {
 formElementProfile.addEventListener('submit', formSubmitHandler);
 
 //группа слушателей, которые работают с попапом добавления карточек
-openPopupAddCards.addEventListener('click', () => {
+openPopupAddCards.addEventListener('click', () => { //рефакторнуть
   openPopup(popupAddCards);
 });
 
