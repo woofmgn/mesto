@@ -43,11 +43,13 @@ const formElementNewPlace = document.getElementsByName('new-place')[0];
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 const popupImage = document.querySelector('.popup-image');
-const popupImageFull = document.querySelector('.popup-image__item'); // зачем?
+const popupImageFull = document.querySelector('.popup-image__item');
 const popupImageTitle = document.querySelector('.popup-image__title');
+const popupImageClose = document.querySelector('.popup-image__close-button');
 
 
-// создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек
+// создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
+// прослушиваем и открывает попап картинки
 const createCard = item => {
   const card = cardTemplateElement.content.querySelector('.element__item').cloneNode(true);
   const cardImage = card.querySelector('.element__image');
@@ -69,9 +71,7 @@ const createCard = item => {
     openPopup(popupImage);
     imageFullScreen(item);
   });
-  // closePopupProfile.addEventListener('click', () => {  // починить закрытие попапа с картинкой
-  //   closePopup(popupImage);
-  // });
+
   return card;
 };
 
@@ -103,7 +103,7 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  ProfilePopupClose();
+  closePopup(popupProfile);
 };
 
 
@@ -125,7 +125,7 @@ const handleAddCardsSubmit = evt => {
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-//группа слушателей, которые работают с попапок редактирования профиля
+// слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
 });
@@ -134,8 +134,7 @@ closePopupProfile.addEventListener('click', () => {
 });
 formElementProfile.addEventListener('submit', formSubmitHandler);
 
-//группа слушателей, которые работают с попапом добавления карточек
-openPopupAddCards.addEventListener('click', () => { //рефакторнуть
+openPopupAddCards.addEventListener('click', () => {
   openPopup(popupAddCards);
 });
 
@@ -143,6 +142,11 @@ closePopupAddCards.addEventListener('click', () => {
   closePopup(popupAddCards);
   formElementNewPlace.reset();
 });
+
+popupImageClose.addEventListener('click', () => {
+  closePopup(popupImage);
+});
+
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
