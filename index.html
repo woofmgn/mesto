@@ -34,34 +34,38 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_profile">
-      <form class="popup__container" name="user-info">
+      <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="popup__close-window" type="button"></button>
-        <fieldset class="popup__input-container">
-          <input class="popup__form-item popup__form-item_type_name" type="text" name="form-name">
-          <input class="popup__form-item  popup__form-item_type_job" type="text" name="form-job">
-          <button class="popup__form-button" type="submit">Сохранить</button>
-        </fieldset>
-      </form>
+        <form class="popup__form popup__form_type_profile" name="user-info">
+          <fieldset class="popup__input-container">
+            <input class="popup__form-item popup__form-item_type_name" type="text" name="form-name" placeholder="Имя">
+            <input class="popup__form-item  popup__form-item_type_job" type="text" name="form-job" placeholder="Сфера деятельности">
+            <button class="popup__form-button" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
     <div class="popup popup_type_cards">
-      <form class="popup__container" name="new-place">
+      <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <button class="popup__close-window" type="button"></button>
-        <fieldset class="popup__input-container">
-          <input class="popup__form-item popup__form-item_type_place" type="text" name="place-name" placeholder="Название">
-          <input class="popup__form-item  popup__form-item_type_link" type="text" name="link" placeholder="Ссылка на картинку">
-          <button class="popup__form-button" type="submit">Создать</button>
-        </fieldset>
-      </form>
+        <form class="popup__form popup__form_type_cards" name="new-place">
+          <fieldset class="popup__input-container">
+            <input class="popup__form-item popup__form-item_type_place" type="text" name="place-name" placeholder="Название">
+            <input class="popup__form-item  popup__form-item_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+            <button class="popup__form-button" type="submit">Создать</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="popup popup_type_image">
-    <figure class="popup__container popup__container_type_image">
-      <button class="popup__close-window popup__close-window_type_image" type="button"></button>
-      <img class="popup__image-item" src="#" alt="#">
-      <figcaption class="popup__title-image"></figcaption>
-    </figure>
+    <div class="popup popup_type_image">
+      <figure class="popup__container popup__container_type_image">
+        <button class="popup__close-window popup__close-window_type_image" type="button"></button>
+        <img class="popup__image-item" src="#" alt="#">
+        <figcaption class="popup__title-image"></figcaption>
+      </figure>
+    </div>
   </div>
   <template class="card-template">
     <li class="element__item">
@@ -71,8 +75,9 @@
         <h2 class="element__title"></h2>
         <button class="element__like-button" type="button"></button>
       </div>
-    </li>
+      </li>
   </template>
+  <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
