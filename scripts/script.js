@@ -44,7 +44,7 @@ const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-i
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = document.querySelector('.popup__image-item');
-const popupImageTitle = document.querySelector('.popup__title_type_image');
+const popupImageTitle = document.querySelector('.popup__title_type_popup-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
 
 
