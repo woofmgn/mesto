@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 const openPopupProfile = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup-profile');
+const popupProfile = document.querySelector('.popup_type_profile');
 const closePopupProfile = document.querySelector('.popup__close-window');
 const formElementProfile = document.getElementsByName('user-info')[0];
 const userName = document.querySelector('.profile__title');
@@ -34,7 +34,7 @@ const userJob = document.querySelector('.profile__subtitle');
 const nameInput = formElementProfile.querySelector('.popup__form-item_type_name');
 const jobInput = formElementProfile.querySelector('.popup__form-item_type_job');
 const saveUserInput = formElementProfile.querySelector('.popup__form-button');
-const popupAddCards = document.querySelector('.popup-cards');
+const popupAddCards = document.querySelector('.popup_type_cards');
 const openPopupAddCards = document.querySelector('.profile__add-button');
 const closePopupAddCards = popupAddCards.querySelector('.popup__close-window');
 const cardListElement = document.querySelector('.element');
@@ -42,10 +42,10 @@ const cardTemplateElement = document.querySelector('.card-template');
 const formElementNewPlace = document.getElementsByName('new-place')[0];
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
-const popupImage = document.querySelector('.popup-image');
-const popupImageFull = document.querySelector('.popup-image__item');
-const popupImageTitle = document.querySelector('.popup-image__title');
-const popupImageClose = document.querySelector('.popup-image__close-button');
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageFull = document.querySelector('.popup__image-item');
+const popupImageTitle = document.querySelector('.popup__title_type_image');
+const popupImageClose = document.querySelector('.popup__close-window_type_image');
 
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
