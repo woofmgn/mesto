@@ -37,10 +37,12 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="popup__close-window" type="button"></button>
-        <form class="popup__form popup__form_type_profile" name="user-info">
+        <form class="popup__form popup__form_type_profile form" name="user-info" novalidate>
           <fieldset class="popup__input-container">
-            <input class="popup__form-item popup__form-item_type_name" type="text" name="form-name" placeholder="Имя">
-            <input class="popup__form-item  popup__form-item_type_job" type="text" name="form-job" placeholder="Сфера деятельности">
+            <input class="popup__form-item popup__form-item_type_name" id="input-name" type="text" name="form-name" placeholder="Имя" required minlength="2" maxlength="40">
+            <span class="popup__input-error input-name-error"></span>
+            <input class="popup__form-item  popup__form-item_type_job" id="input-job" type="text" name="form-job" placeholder="Сфера деятельности" required minlength="2" maxlength="200">
+            <span class="popup__input-error input-job-error"></span>
             <button class="popup__form-button" type="submit">Сохранить</button>
           </fieldset>
         </form>
@@ -50,10 +52,12 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <button class="popup__close-window" type="button"></button>
-        <form class="popup__form popup__form_type_cards" name="new-place">
+        <form class="popup__form popup__form_type_cards form" name="new-place" novalidate>
           <fieldset class="popup__input-container">
-            <input class="popup__form-item popup__form-item_type_place" type="text" name="place-name" placeholder="Название">
-            <input class="popup__form-item  popup__form-item_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+            <input class="popup__form-item popup__form-item_type_place" id="input-place" type="text" name="place-name" placeholder="Название" required minlength="2" maxlength="30">
+            <span class="popup__input-error input-place-error">Вы пропустили это поле.</span>
+            <input class="popup__form-item  popup__form-item_type_link" id="input-link" type="url" name="place-link" placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error input-link-error">Введите адрес сайта.</span>
             <button class="popup__form-button" type="submit">Создать</button>
           </fieldset>
         </form>
@@ -75,9 +79,10 @@
         <h2 class="element__title"></h2>
         <button class="element__like-button" type="button"></button>
       </div>
-      </li>
+    </li>
   </template>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

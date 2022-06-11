@@ -94,6 +94,12 @@ const handleAddCardsSubmit = evt => {
   formElementNewPlace.reset();
 };
 
+//____________ валидация
+
+
+
+//_____________
+
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
