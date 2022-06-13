@@ -1,6 +1,13 @@
-.popup__form-button_inactive:disabled {
+.popup__form-button_inactive {
+  /* pointer-events: disabled; */
+  pointer-events: none;
   opacity: .2;
 }
+
+/* .popup__form-button_inactive:disabled {
+  opacity: .2;
+  pointer-events: none;
+} */
 
 .popup__form-button_inactive:hover {
   cursor: default;

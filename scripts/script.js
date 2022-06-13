@@ -19,6 +19,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = document.querySelector('.popup__image-item');
 const popupImageTitle = document.querySelector('.popup__title-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
+const escClosePopup = document.querySelector('.popup'); // добавил
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
 // прослушиваем и открывает попап картинки
@@ -94,12 +95,6 @@ const handleAddCardsSubmit = evt => {
   formElementNewPlace.reset();
 };
 
-//____________ валидация
-
-
-
-//_____________
-
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
@@ -107,9 +102,27 @@ initialCards.forEach(addCard);
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
 });
+
+window.addEventListener('keydown', evt => {
+  if(evt.key === 'Escape') {
+    closePopup(popupProfile);
+    closePopup(popupAddCards);
+    closePopup(popupImage);
+  }
+});
+
+document.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupProfile);
+    closePopup(popupAddCards);
+    closePopup(popupImage);
+  }
+});
+
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
 });
+
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
 openPopupAddCards.addEventListener('click', () => {

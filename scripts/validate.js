@@ -1,3 +1,5 @@
+const buttonElement = document.querySelector('.popup__form-button');
+
 // функция добавления класса с ошибкой ввода
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -5,6 +7,8 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add('popup__form-item_type_error');
   errorElement.textContent = errorMessage;
   errorElement.classList.add('form__input-error_active')
+  buttonElement.setAttribute('disabled', 'disabled');
+  buttonElement.classList.add('popup__form-button_inactive');
 };
 
 // функция удаления класса с ошибкой
@@ -14,6 +18,8 @@ const hideInputError = (formElement, inputElement) => {
   inputElement.classList.remove('popup__form-item_type_error');
   errorElement.classList.remove('form__input-error_active');
   errorElement.textContent = '';
+  buttonElement.removeAttribute('disabled', 'disabled');
+  buttonElement.classList.remove('popup__form-button_inactive');
 };
 
 // проверяем валидность инпута и выводим/скрываем ошибку
@@ -59,10 +65,10 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', 'disabled');
+    // buttonElement.setAttribute('disabled', 'disabled');
     buttonElement.classList.add('popup__form-button_inactive');
   }else{
-    buttonElement.removeAttribute('disabled', 'disabled');
+    // buttonElement.removeAttribute('disabled', 'disabled');
     buttonElement.classList.remove('popup__form-button_inactive');
   }
 }
