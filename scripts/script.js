@@ -164,8 +164,9 @@ closePopupAddCards.addEventListener('click', () => {
 
 popupImageClose.addEventListener('click', () => {
   closePopup(popupImage);
-  pressEscPopupListener(popupImage);
 });
+
+pressEscPopupListener(popupImage);
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
