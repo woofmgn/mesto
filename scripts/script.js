@@ -103,15 +103,15 @@ initialCards.forEach(addCard);
 
 //убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
 function ResetErrorClosePopup() {
-  const formInput = Array.from(document.querySelectorAll('.popup__form-item'));
-  const inputErrorMessage =  Array.from(document.querySelectorAll('.popup__input-error'));
+  const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
+  const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
   formInput.forEach(item => {
-    item.classList.remove('popup__form-item_type_error');
+    item.classList.remove(classListObject.inputErrorClass);
   });
 
   inputErrorMessage.forEach(item => {
-    item.classList.remove('form__input-error_active');
+    item.classList.remove(classListObject.errorClass);
   });
 }
 
