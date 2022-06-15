@@ -1,3 +1,12 @@
+const classListObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__form-button',
+  inactiveButtonClass: 'popup__form-button_inactive',
+  inputErrorClass: 'popup__form-item_type_error',
+  errorClass: 'form__input-error_active'
+};
+
 const buttonElement = document.querySelector('.popup__form-button');
 
 // функция добавления класса с ошибкой ввода

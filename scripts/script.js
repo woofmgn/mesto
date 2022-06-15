@@ -19,7 +19,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = document.querySelector('.popup__image-item');
 const popupImageTitle = document.querySelector('.popup__title-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
-const escClosePopup = document.querySelector('.popup'); // добавил
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
 // прослушиваем и открывает попап картинки
@@ -98,6 +97,20 @@ const handleAddCardsSubmit = evt => {
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
+//убираем ошибки валидации, если пользователь ввел не верные данны и закрыл попап
+function ResetErrorClosePopup() {
+  const formInput = Array.from(document.querySelectorAll('.popup__form-item'));
+  const inputErrorMessage =  Array.from(document.querySelectorAll('.popup__input-error'));
+
+  formInput.forEach(item => {
+    item.classList.remove('popup__form-item_type_error');
+  });
+
+  inputErrorMessage.forEach(item => {
+    item.classList.remove('form__input-error_active');
+  });
+}
+
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
@@ -108,6 +121,7 @@ window.addEventListener('keydown', evt => {
     closePopup(popupProfile);
     closePopup(popupAddCards);
     closePopup(popupImage);
+    ResetErrorClosePopup();
   }
 });
 
@@ -116,11 +130,13 @@ document.addEventListener('click', evt => {
     closePopup(popupProfile);
     closePopup(popupAddCards);
     closePopup(popupImage);
+    ResetErrorClosePopup();
   }
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
+  ResetErrorClosePopup();
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
@@ -130,6 +146,7 @@ openPopupAddCards.addEventListener('click', () => {
 });
 
 closePopupAddCards.addEventListener('click', () => {
+  ResetErrorClosePopup();
   closePopup(popupAddCards);
   formElementNewPlace.reset();
 });
