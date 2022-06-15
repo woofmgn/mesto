@@ -7,28 +7,28 @@ const classListObject = {
   errorClass: 'form__input-error_active'
 };
 
-const buttonElement = document.querySelector('.popup__form-button');
+const buttonElement = document.querySelector(classListObject.submitButtonSelector);
 
 // функция добавления класса с ошибкой ввода
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.add('popup__form-item_type_error');
+  inputElement.classList.add(classListObject.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active')
+  errorElement.classList.add(classListObject.errorClass)
   buttonElement.setAttribute('disabled', 'disabled');
-  buttonElement.classList.add('popup__form-button_inactive');
+  buttonElement.classList.add(classListObject.inactiveButtonClass);
 };
 
 // функция удаления класса с ошибкой
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.remove('popup__form-item_type_error');
-  errorElement.classList.remove('form__input-error_active');
+  inputElement.classList.remove(classListObject.inputErrorClass);
+  errorElement.classList.remove(classListObject.errorClass);
   errorElement.textContent = '';
   buttonElement.removeAttribute('disabled', 'disabled');
-  buttonElement.classList.remove('popup__form-button_inactive');
+  buttonElement.classList.remove(classListObject.inactiveButtonClass);
 };
 
 // проверяем валидность инпута и выводим/скрываем ошибку
@@ -40,9 +40,10 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
+// слушаем все инпуты на правильность ввода
 function setEventListener(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__form-item'));
-  const buttonElement = formElement.querySelector('.popup__form-button');
+  const inputList = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
+  const buttonElement = formElement.querySelector(classListObject.submitButtonSelector);
 
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
@@ -53,8 +54,8 @@ function setEventListener(formElement) {
   });
 }
 
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.form'))
+function enableValidation(classListObject) {
+  const formList = Array.from(document.querySelectorAll(classListObject.formSelector))
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
@@ -64,7 +65,7 @@ function enableValidation() {
   });
 }
 
-enableValidation();
+enableValidation(classListObject);
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
@@ -72,12 +73,12 @@ function hasInvalidInput(inputList) {
   });
 }
 
+// меняем статус кнопки в зависимости от состояния валидации
 function toggleButtonState(inputList, buttonElement) {
   if(hasInvalidInput(inputList)) {
-    // buttonElement.setAttribute('disabled', 'disabled');
-    buttonElement.classList.add('popup__form-button_inactive');
+    buttonElement.classList.add(classListObject.inactiveButtonClass);
   }else{
-    // buttonElement.removeAttribute('disabled', 'disabled');
-    buttonElement.classList.remove('popup__form-button_inactive');
+    buttonElement.classList.remove(classListObject.inactiveButtonClass);
   }
 }
+

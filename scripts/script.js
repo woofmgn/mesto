@@ -19,6 +19,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = document.querySelector('.popup__image-item');
 const popupImageTitle = document.querySelector('.popup__title-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
+const buttonReset = formElementNewPlace.querySelector('.popup__form-button');
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
 // прослушиваем и открывает попап картинки
@@ -69,6 +70,7 @@ function openPopup(item) {
 
 function closePopup(item) {
   item.classList.remove('popup_opened');
+  deleteEscPopupListener();
 };
 
 function handlerEditProfileFormSubmit (evt) {
@@ -92,12 +94,14 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
+  buttonElement.setAttribute('disabled', 'disabled');
+  buttonReset.classList.add(classListObject.inactiveButtonClass);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-//убираем ошибки валидации, если пользователь ввел не верные данны и закрыл попап
+//убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
 function ResetErrorClosePopup() {
   const formInput = Array.from(document.querySelectorAll('.popup__form-item'));
   const inputErrorMessage =  Array.from(document.querySelectorAll('.popup__input-error'));
@@ -111,18 +115,24 @@ function ResetErrorClosePopup() {
   });
 }
 
+// слушаем нажатие Esc
+const pressEscPopupListener = (item) => {
+  window.addEventListener('keydown', evt => {
+    if(evt.key === 'Escape') {
+      closePopup(item);
+      ResetErrorClosePopup();
+    }
+  })
+};
+
+const deleteEscPopupListener = () => {
+  window.removeEventListener('keydown', pressEscPopupListener);
+}
+
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
-});
-
-window.addEventListener('keydown', evt => {
-  if(evt.key === 'Escape') {
-    closePopup(popupProfile);
-    closePopup(popupAddCards);
-    closePopup(popupImage);
-    ResetErrorClosePopup();
-  }
+  pressEscPopupListener(popupProfile);
 });
 
 document.addEventListener('click', evt => {
@@ -143,6 +153,7 @@ formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
 openPopupAddCards.addEventListener('click', () => {
   openPopup(popupAddCards);
+  pressEscPopupListener(popupAddCards);
 });
 
 closePopupAddCards.addEventListener('click', () => {

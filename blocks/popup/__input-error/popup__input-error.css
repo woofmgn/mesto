@@ -1,6 +1,7 @@
 .popup__input-error {
-  /* display: none; */
-  display: flex; /* добавил */
+  display: flex;
+  min-height: 30px;
+  padding-top: 3px;
   visibility: hidden;
   font-family: 'Inter';
   font-weight: 400;
