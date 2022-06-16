@@ -92,6 +92,3 @@ function enableValidation(classListObject) {
 
 enableValidation(classListObject);
 
-
-
-
