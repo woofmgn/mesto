@@ -157,7 +157,6 @@ popupProfile.addEventListener('click', evt => {
 popupAddCards.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupAddCards);
-    // resetErrorClosePopup(popupAddCards);
   }
 });
 
