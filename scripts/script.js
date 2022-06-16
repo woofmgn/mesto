@@ -66,11 +66,12 @@ function openPopup(item) {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   };
+  document.addEventListener('keydown', pressEscPopupListener);
 };
 
 function closePopup(item) {
   item.classList.remove('popup_opened');
-  deleteEscPopupListener();
+  document.removeEventListener('keydown', pressEscPopupListener);
 };
 
 function handlerEditProfileFormSubmit (evt) {
@@ -94,21 +95,29 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
+<<<<<<< HEAD
   // buttonElement.setAttribute('disabled', 'disabled');
   // buttonReset.classList.add(classListObject.inactiveButtonClass);
+=======
+>>>>>>> feature/validation
   disabledButtonSubmit(buttonElement, buttonReset);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
+<<<<<<< HEAD
 //убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
 function resetErrorClosePopup() {
   const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
+=======
+function resetErrorClosePopup(formElement) {
+  const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
+>>>>>>> feature/validation
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
-  formInput.forEach(item => {
-    item.classList.remove(classListObject.inputErrorClass);
+  formInput.forEach(inputElement => {
+    hideInputError(formElement, inputElement, classListObject);
   });
 
   inputErrorMessage.forEach(item => {
@@ -116,23 +125,23 @@ function resetErrorClosePopup() {
   });
 }
 
-// слушаем нажатие Esc
-const pressEscPopupListener = (item) => {
-  window.addEventListener('keydown', evt => {
+const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
+<<<<<<< HEAD
       closePopup(item);
       resetErrorClosePopup();
+=======
+      const activePopup = document.querySelector('.popup_opened')
+      closePopup(activePopup);
+      resetErrorClosePopup(activePopup);
+>>>>>>> feature/validation
     }
-  })
 };
-
-const deleteEscPopupListener = () => {
-  window.removeEventListener('keydown', pressEscPopupListener);
-}
 
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
+<<<<<<< HEAD
   pressEscPopupListener(popupProfile);
 });
 
@@ -143,28 +152,58 @@ document.addEventListener('click', evt => {
     closePopup(popupImage);
     resetErrorClosePopup();
   }
+=======
+>>>>>>> feature/validation
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
+<<<<<<< HEAD
   resetErrorClosePopup();
+=======
+  resetErrorClosePopup(popupProfile);
+>>>>>>> feature/validation
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
 openPopupAddCards.addEventListener('click', () => {
   openPopup(popupAddCards);
-  pressEscPopupListener(popupAddCards);
 });
 
 closePopupAddCards.addEventListener('click', () => {
+<<<<<<< HEAD
   resetErrorClosePopup();
+=======
+>>>>>>> feature/validation
   closePopup(popupAddCards);
-  formElementNewPlace.reset();
 });
 
 popupImageClose.addEventListener('click', () => {
   closePopup(popupImage);
+<<<<<<< HEAD
+=======
+});
+
+popupProfile.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupProfile);
+    resetErrorClosePopup(popupProfile);
+  }
+});
+
+popupAddCards.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupAddCards);
+    resetErrorClosePopup(popupAddCards);
+  }
+});
+
+popupImage.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupImage);
+  }
+>>>>>>> feature/validation
 });
 
 pressEscPopupListener(popupImage);
