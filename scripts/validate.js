@@ -9,38 +9,8 @@ const classListObject = {
 
 const buttonElement = document.querySelector(classListObject.submitButtonSelector);
 
-<<<<<<< HEAD
-// function disabledButtonSubmit(buttonElement) {
-//   buttonElement.setAttribute('disabled', 'disabled');
-//   buttonElement.classList.add(classListObject.inactiveButtonClass);
-// };
-
-// function enabledButtonSubmit(buttonElement) {
-//   buttonElement.removeAttribute('disabled', 'disabled');
-//   buttonElement.classList.remove(classListObject.inactiveButtonClass);
-// };
-
-function disabledButtonSubmit(buttonElement, buttonReset) {
-  buttonElement.setAttribute('disabled', 'disabled');
-  buttonReset.classList.add(classListObject.inactiveButtonClass);
-};
-
-function enabledButtonSubmit(buttonElement, buttonReset) {
-  buttonElement.removeAttribute('disabled', 'disabled');
-  buttonReset.classList.remove(classListObject.inactiveButtonClass);
-};
-
-// функция добавления класса с ошибкой ввода
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add(classListObject.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(classListObject.errorClass)
-=======
 // неактивный статус сабмита
 function disabledButtonSubmit(buttonElement, classListObject) {
->>>>>>> feature/validation
   buttonElement.setAttribute('disabled', 'disabled');
   buttonElement.classList.add(classListObject.inactiveButtonClass);
 };
@@ -123,20 +93,4 @@ function enableValidation(classListObject) {
 enableValidation(classListObject);
 
 
-<<<<<<< HEAD
-// меняем статус кнопки в зависимости от состояния валидации
-function toggleButtonState(inputList, buttonElement) {
-  if(hasInvalidInput(inputList)) {
-    // buttonElement.setAttribute('disabled', 'disabled');
-    // buttonElement.classList.add(classListObject.inactiveButtonClass);
-    disabledButtonSubmit(buttonElement, buttonReset);
-  }else{
-    enabledButtonSubmit(buttonElement, buttonReset);
-    // buttonElement.removeAttribute('disabled', 'disabled');
-    // buttonElement.classList.remove(classListObject.inactiveButtonClass);
-  }
-}
-=======
-
->>>>>>> feature/validation
 

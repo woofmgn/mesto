@@ -95,25 +95,14 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-<<<<<<< HEAD
-  // buttonElement.setAttribute('disabled', 'disabled');
-  // buttonReset.classList.add(classListObject.inactiveButtonClass);
-=======
->>>>>>> feature/validation
   disabledButtonSubmit(buttonElement, buttonReset);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-<<<<<<< HEAD
-//убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
-function resetErrorClosePopup() {
-  const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
-=======
 function resetErrorClosePopup(formElement) {
   const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
->>>>>>> feature/validation
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
   formInput.forEach(inputElement => {
@@ -127,42 +116,20 @@ function resetErrorClosePopup(formElement) {
 
 const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
-<<<<<<< HEAD
-      closePopup(item);
-      resetErrorClosePopup();
-=======
       const activePopup = document.querySelector('.popup_opened')
       closePopup(activePopup);
       resetErrorClosePopup(activePopup);
->>>>>>> feature/validation
     }
 };
 
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
-<<<<<<< HEAD
-  pressEscPopupListener(popupProfile);
-});
-
-document.addEventListener('click', evt => {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(popupProfile);
-    closePopup(popupAddCards);
-    closePopup(popupImage);
-    resetErrorClosePopup();
-  }
-=======
->>>>>>> feature/validation
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
-<<<<<<< HEAD
-  resetErrorClosePopup();
-=======
   resetErrorClosePopup(popupProfile);
->>>>>>> feature/validation
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
@@ -172,17 +139,11 @@ openPopupAddCards.addEventListener('click', () => {
 });
 
 closePopupAddCards.addEventListener('click', () => {
-<<<<<<< HEAD
-  resetErrorClosePopup();
-=======
->>>>>>> feature/validation
   closePopup(popupAddCards);
 });
 
 popupImageClose.addEventListener('click', () => {
   closePopup(popupImage);
-<<<<<<< HEAD
-=======
 });
 
 popupProfile.addEventListener('click', evt => {
@@ -203,7 +164,6 @@ popupImage.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupImage);
   }
->>>>>>> feature/validation
 });
 
 pressEscPopupListener(popupImage);
