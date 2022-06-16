@@ -114,7 +114,10 @@ const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
       const activePopup = document.querySelector('.popup_opened')
       closePopup(activePopup);
+
+      if(activePopup.classList.contains('popup_type_profile')) {
       resetErrorClosePopup(activePopup);
+      }
     }
 };
 
@@ -154,7 +157,7 @@ popupProfile.addEventListener('click', evt => {
 popupAddCards.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupAddCards);
-    resetErrorClosePopup(popupAddCards);
+    // resetErrorClosePopup(popupAddCards);
   }
 });
 
