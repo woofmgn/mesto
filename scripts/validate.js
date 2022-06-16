@@ -9,6 +9,26 @@ const classListObject = {
 
 const buttonElement = document.querySelector(classListObject.submitButtonSelector);
 
+// function disabledButtonSubmit(buttonElement) {
+//   buttonElement.setAttribute('disabled', 'disabled');
+//   buttonElement.classList.add(classListObject.inactiveButtonClass);
+// };
+
+// function enabledButtonSubmit(buttonElement) {
+//   buttonElement.removeAttribute('disabled', 'disabled');
+//   buttonElement.classList.remove(classListObject.inactiveButtonClass);
+// };
+
+function disabledButtonSubmit(buttonElement, buttonReset) {
+  buttonElement.setAttribute('disabled', 'disabled');
+  buttonReset.classList.add(classListObject.inactiveButtonClass);
+};
+
+function enabledButtonSubmit(buttonElement, buttonReset) {
+  buttonElement.removeAttribute('disabled', 'disabled');
+  buttonReset.classList.remove(classListObject.inactiveButtonClass);
+};
+
 // функция добавления класса с ошибкой ввода
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -76,9 +96,13 @@ function hasInvalidInput(inputList) {
 // меняем статус кнопки в зависимости от состояния валидации
 function toggleButtonState(inputList, buttonElement) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add(classListObject.inactiveButtonClass);
+    // buttonElement.setAttribute('disabled', 'disabled');
+    // buttonElement.classList.add(classListObject.inactiveButtonClass);
+    disabledButtonSubmit(buttonElement, buttonReset);
   }else{
-    buttonElement.classList.remove(classListObject.inactiveButtonClass);
+    enabledButtonSubmit(buttonElement, buttonReset);
+    // buttonElement.removeAttribute('disabled', 'disabled');
+    // buttonElement.classList.remove(classListObject.inactiveButtonClass);
   }
 }
 

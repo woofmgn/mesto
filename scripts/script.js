@@ -94,15 +94,16 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  buttonElement.setAttribute('disabled', 'disabled');
-  buttonReset.classList.add(classListObject.inactiveButtonClass);
+  // buttonElement.setAttribute('disabled', 'disabled');
+  // buttonReset.classList.add(classListObject.inactiveButtonClass);
+  disabledButtonSubmit(buttonElement, buttonReset);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
 //убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
-function ResetErrorClosePopup() {
+function resetErrorClosePopup() {
   const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
@@ -120,7 +121,7 @@ const pressEscPopupListener = (item) => {
   window.addEventListener('keydown', evt => {
     if(evt.key === 'Escape') {
       closePopup(item);
-      ResetErrorClosePopup();
+      resetErrorClosePopup();
     }
   })
 };
@@ -140,13 +141,13 @@ document.addEventListener('click', evt => {
     closePopup(popupProfile);
     closePopup(popupAddCards);
     closePopup(popupImage);
-    ResetErrorClosePopup();
+    resetErrorClosePopup();
   }
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
-  ResetErrorClosePopup();
+  resetErrorClosePopup();
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
@@ -157,7 +158,7 @@ openPopupAddCards.addEventListener('click', () => {
 });
 
 closePopupAddCards.addEventListener('click', () => {
-  ResetErrorClosePopup();
+  resetErrorClosePopup();
   closePopup(popupAddCards);
   formElementNewPlace.reset();
 });
