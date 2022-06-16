@@ -62,10 +62,6 @@ const addCard = item => {
 
 function openPopup(item) {
   item.classList.add('popup_opened');
-    if (item === popupProfile) {
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
-  };
   document.addEventListener('keydown', pressEscPopupListener);
 };
 
@@ -124,6 +120,8 @@ const pressEscPopupListener = (evt) => {
 
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
   openPopup(popupProfile);
 });
 

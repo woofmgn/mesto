@@ -92,5 +92,8 @@ function enableValidation(classListObject) {
 
 enableValidation(classListObject);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> feature/validation
