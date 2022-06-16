@@ -9,11 +9,13 @@ const classListObject = {
 
 const buttonElement = document.querySelector(classListObject.submitButtonSelector);
 
+// неактивный статус сабмита
 function disabledButtonSubmit(buttonElement, classListObject) {
   buttonElement.setAttribute('disabled', 'disabled');
   buttonElement.classList.add(classListObject.inactiveButtonClass);
 };
 
+// активный статус сабмита
 function enabledButtonSubmit(buttonElement, classListObject) {
   buttonElement.removeAttribute('disabled', 'disabled');
   buttonElement.classList.remove(classListObject.inactiveButtonClass);

@@ -101,13 +101,12 @@ const handleAddCardsSubmit = evt => {
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-// убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
-function resetErrorClosePopup() {
-  const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
+function resetErrorClosePopup(formElement) {
+  const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
-  formInput.forEach(item => {
-    item.classList.remove(classListObject.inputErrorClass);
+  formInput.forEach(inputElement => {
+    hideInputError(formElement, inputElement, classListObject);
   });
 
   inputErrorMessage.forEach(item => {
@@ -115,17 +114,11 @@ function resetErrorClosePopup() {
   });
 }
 
-// function resetErrorClosePopup() {
-//   const formElement = document.querySelector(classListObject.formSelector);
-//   const inputElement = formElement.querySelector(cardListElement.inputElement);
-//   hideInputError(formElement, inputElement);
-// }
-
 const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
       const activePopup = document.querySelector('.popup_opened')
       closePopup(activePopup);
-      resetErrorClosePopup();
+      resetErrorClosePopup(activePopup);
     }
 };
 
@@ -136,7 +129,7 @@ openPopupProfile.addEventListener('click', () => {
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
-  resetErrorClosePopup();
+  resetErrorClosePopup(popupProfile);
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
@@ -156,14 +149,14 @@ popupImageClose.addEventListener('click', () => {
 popupProfile.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupProfile);
-    resetErrorClosePopup();
+    resetErrorClosePopup(popupProfile);
   }
 });
 
 popupAddCards.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupAddCards);
-    resetErrorClosePopup();
+    resetErrorClosePopup(popupAddCards);
   }
 });
 
