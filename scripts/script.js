@@ -146,9 +146,7 @@ openPopupAddCards.addEventListener('click', () => {
 });
 
 closePopupAddCards.addEventListener('click', () => {
-  resetErrorClosePopup();
   closePopup(popupAddCards);
-  formElementNewPlace.reset();
 });
 
 popupImageClose.addEventListener('click', () => {
@@ -159,7 +157,6 @@ popupProfile.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupProfile);
     resetErrorClosePopup();
-    console.log(evt);
   }
 });
 
@@ -167,14 +164,12 @@ popupAddCards.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupAddCards);
     resetErrorClosePopup();
-    console.log(evt);
   }
 });
 
 popupImage.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupImage);
-    console.log(evt);
   }
 });
 
