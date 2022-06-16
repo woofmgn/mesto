@@ -9,59 +9,70 @@ const classListObject = {
 
 const buttonElement = document.querySelector(classListObject.submitButtonSelector);
 
-function disabledButtonSubmit(buttonElement, buttonReset) {
+function disabledButtonSubmit(buttonElement, classListObject) {
   buttonElement.setAttribute('disabled', 'disabled');
-  buttonReset.classList.add(classListObject.inactiveButtonClass);
+  buttonElement.classList.add(classListObject.inactiveButtonClass);
 };
 
-function enabledButtonSubmit(buttonElement, buttonReset) {
+function enabledButtonSubmit(buttonElement, classListObject) {
   buttonElement.removeAttribute('disabled', 'disabled');
-  buttonReset.classList.remove(classListObject.inactiveButtonClass);
+  buttonElement.classList.remove(classListObject.inactiveButtonClass);
 };
+
+function hasInvalidInput(inputList) {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+// меняем статус кнопки в зависимости от состояния валидации
+function toggleButtonState(inputList, buttonElement, classListObject) {
+  if(hasInvalidInput(inputList)) {
+    disabledButtonSubmit(buttonElement, classListObject);
+  }else{
+    enabledButtonSubmit(buttonElement, classListObject);
+  }
+}
 
 // функция добавления класса с ошибкой ввода
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, classListObject) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(classListObject.inputErrorClass);
-  errorElement.textContent = errorMessage;
+  errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(classListObject.errorClass)
-  // buttonElement.setAttribute('disabled', 'disabled');
-  // buttonElement.classList.add(classListObject.inactiveButtonClass);
-  disabledButtonSubmit(buttonElement, buttonReset);
+  disabledButtonSubmit(buttonElement, classListObject);
 };
 
 // функция удаления класса с ошибкой
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, classListObject) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.remove(classListObject.inputErrorClass);
   errorElement.classList.remove(classListObject.errorClass);
   errorElement.textContent = '';
-  // buttonElement.removeAttribute('disabled', 'disabled');
-  // buttonElement.classList.remove(classListObject.inactiveButtonClass);
-  enabledButtonSubmit(buttonElement, buttonReset)
+  enabledButtonSubmit(buttonElement, classListObject);
 };
 
 // проверяем валидность инпута и выводим/скрываем ошибку
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, classListObject) => {
   if(!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, classListObject);
   }else{
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, classListObject);
   }
 };
 
 // слушаем все инпуты на правильность ввода
-function setEventListener(formElement) {
+function setEventListener(formElement, classListObject) {
   const inputList = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
   const buttonElement = formElement.querySelector(classListObject.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, classListObject);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      toggleButtonState(inputList, buttonElement);
-      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement, classListObject);
+      checkInputValidity(formElement, inputElement, classListObject);
     });
   });
 }
@@ -73,24 +84,12 @@ function enableValidation(classListObject) {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-  setEventListener(formElement);
+  setEventListener(formElement, classListObject);
   });
 }
 
 enableValidation(classListObject);
 
-function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
 
-// меняем статус кнопки в зависимости от состояния валидации
-function toggleButtonState(inputList, buttonElement) {
-  if(hasInvalidInput(inputList)) {
-    disabledButtonSubmit(buttonElement, buttonReset);
-  }else{
-    enabledButtonSubmit(buttonElement, buttonReset);
-  }
-}
+
 
