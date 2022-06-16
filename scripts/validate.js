@@ -26,8 +26,9 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add(classListObject.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(classListObject.errorClass)
-  buttonElement.setAttribute('disabled', 'disabled');
-  buttonElement.classList.add(classListObject.inactiveButtonClass);
+  // buttonElement.setAttribute('disabled', 'disabled');
+  // buttonElement.classList.add(classListObject.inactiveButtonClass);
+  disabledButtonSubmit(buttonElement, buttonReset);
 };
 
 // функция удаления класса с ошибкой
@@ -37,8 +38,9 @@ const hideInputError = (formElement, inputElement) => {
   inputElement.classList.remove(classListObject.inputErrorClass);
   errorElement.classList.remove(classListObject.errorClass);
   errorElement.textContent = '';
-  buttonElement.removeAttribute('disabled', 'disabled');
-  buttonElement.classList.remove(classListObject.inactiveButtonClass);
+  // buttonElement.removeAttribute('disabled', 'disabled');
+  // buttonElement.classList.remove(classListObject.inactiveButtonClass);
+  enabledButtonSubmit(buttonElement, buttonReset)
 };
 
 // проверяем валидность инпута и выводим/скрываем ошибку
