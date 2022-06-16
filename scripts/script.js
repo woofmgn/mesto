@@ -134,15 +134,6 @@ openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
 });
 
-document.addEventListener('click', evt => {
-  if(evt.target.classList.contains('popup')) {
-    closePopup(popupProfile);
-    closePopup(popupAddCards);
-    closePopup(popupImage);
-    resetErrorClosePopup();
-  }
-});
-
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
   resetErrorClosePopup();
@@ -162,6 +153,29 @@ closePopupAddCards.addEventListener('click', () => {
 
 popupImageClose.addEventListener('click', () => {
   closePopup(popupImage);
+});
+
+popupProfile.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupProfile);
+    resetErrorClosePopup();
+    console.log(evt);
+  }
+});
+
+popupAddCards.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupAddCards);
+    resetErrorClosePopup();
+    console.log(evt);
+  }
+});
+
+popupImage.addEventListener('click', evt => {
+  if(evt.target.classList.contains('popup')) {
+    closePopup(popupImage);
+    console.log(evt);
+  }
 });
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
