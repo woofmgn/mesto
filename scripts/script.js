@@ -66,11 +66,12 @@ function openPopup(item) {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   };
+  document.addEventListener('keydown', pressEscPopupListener);
 };
 
 function closePopup(item) {
   item.classList.remove('popup_opened');
-  deleteEscPopupListener();
+  document.removeEventListener('keydown', pressEscPopupListener);
 };
 
 function handlerEditProfileFormSubmit (evt) {
@@ -94,15 +95,14 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  buttonElement.setAttribute('disabled', 'disabled');
-  buttonReset.classList.add(classListObject.inactiveButtonClass);
+  disabledButtonSubmit(buttonElement, buttonReset);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-//убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
-function ResetErrorClosePopup() {
+// убираем ошибки валидации, если пользователь ввел не верные данные и закрыл попап
+function resetErrorClosePopup() {
   const formInput = Array.from(document.querySelectorAll(classListObject.inputSelector));
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
@@ -115,24 +115,23 @@ function ResetErrorClosePopup() {
   });
 }
 
-// слушаем нажатие Esc
-const pressEscPopupListener = (item) => {
-  window.addEventListener('keydown', evt => {
-    if(evt.key === 'Escape') {
-      closePopup(item);
-      ResetErrorClosePopup();
-    }
-  })
-};
+// function resetErrorClosePopup() {
+//   const formElement = document.querySelector(classListObject.formSelector);
+//   const inputElement = formElement.querySelector(cardListElement.inputElement);
+//   hideInputError(formElement, inputElement);
+// }
 
-const deleteEscPopupListener = () => {
-  window.removeEventListener('keydown', pressEscPopupListener);
-}
+const pressEscPopupListener = (evt) => {
+    if(evt.key === 'Escape') {
+      const activePopup = document.querySelector('.popup_opened')
+      closePopup(activePopup);
+      resetErrorClosePopup();
+    }
+};
 
 // слушаем открытие/закрытие попапов
 openPopupProfile.addEventListener('click', () => {
   openPopup(popupProfile);
-  pressEscPopupListener(popupProfile);
 });
 
 document.addEventListener('click', evt => {
@@ -140,31 +139,29 @@ document.addEventListener('click', evt => {
     closePopup(popupProfile);
     closePopup(popupAddCards);
     closePopup(popupImage);
-    ResetErrorClosePopup();
+    resetErrorClosePopup();
   }
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
-  ResetErrorClosePopup();
+  resetErrorClosePopup();
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
 openPopupAddCards.addEventListener('click', () => {
   openPopup(popupAddCards);
-  pressEscPopupListener(popupAddCards);
 });
 
 closePopupAddCards.addEventListener('click', () => {
-  ResetErrorClosePopup();
+  resetErrorClosePopup();
   closePopup(popupAddCards);
   formElementNewPlace.reset();
 });
 
 popupImageClose.addEventListener('click', () => {
   closePopup(popupImage);
-  pressEscPopupListener(popupImage);
 });
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
