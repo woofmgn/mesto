@@ -19,7 +19,9 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = document.querySelector('.popup__image-item');
 const popupImageTitle = document.querySelector('.popup__title-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
-const buttonReset = formElementNewPlace.querySelector('.popup__form-button');
+const buttonSubmit = formElementNewPlace.querySelector('.popup__form-button');
+
+const popupProfileInputs =  formElementProfile.querySelector('.popup__form-item');
 
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
 // прослушиваем и открывает попап картинки
@@ -91,19 +93,33 @@ const handleAddCardsSubmit = evt => {
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  disabledButtonSubmit(buttonElement, buttonReset);
+  disabledButtonSubmit(buttonSubmit, classListObject);
 };
 
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-function resetErrorClosePopup(formElement) {
-  const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
+// // function resetErrorClosePopup(formElement) {
+// function resetErrorClosePopup() {
+//   // const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
+//   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
+
+//   // formInput.forEach(inputElement => {
+//   //   hideInputError(formElement, inputElement, classListObject);
+//   // });
+
+//   inputErrorMessage.forEach(item => {
+//     item.classList.remove(classListObject.errorClass);
+//   });
+// }
+
+function resetErrorClosePopup() {
+  // const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
 
-  formInput.forEach(inputElement => {
-    hideInputError(formElement, inputElement, classListObject);
-  });
+  // formInput.forEach(inputElement => {
+  //   hideInputError(formElement, inputElement, classListObject);
+  // });
 
   inputErrorMessage.forEach(item => {
     item.classList.remove(classListObject.errorClass);
@@ -115,9 +131,9 @@ const pressEscPopupListener = (evt) => {
       const activePopup = document.querySelector('.popup_opened')
       closePopup(activePopup);
 
-      if(activePopup.classList.contains('popup_type_profile')) {
-      resetErrorClosePopup(activePopup);
-      }
+      // if(activePopup.classList.contains('popup_type_profile')) {
+      // resetErrorClosePopup(activePopup);
+      // }
     }
 };
 
@@ -126,11 +142,12 @@ openPopupProfile.addEventListener('click', () => {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopup(popupProfile);
+  // resetErrorClosePopup();
+  hideInputError(popupProfile, popupProfileInputs, classListObject);
 });
 
 closePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
-  resetErrorClosePopup(popupProfile);
 });
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
@@ -150,7 +167,6 @@ popupImageClose.addEventListener('click', () => {
 popupProfile.addEventListener('click', evt => {
   if(evt.target.classList.contains('popup')) {
     closePopup(popupProfile);
-    resetErrorClosePopup(popupProfile);
   }
 });
 
@@ -166,7 +182,7 @@ popupImage.addEventListener('click', evt => {
   }
 });
 
-pressEscPopupListener(popupImage);
+// pressEscPopupListener(popupImage);
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
