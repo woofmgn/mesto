@@ -1,3 +1,12 @@
+const classListObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__form-button',
+  inactiveButtonClass: 'popup__form-button_inactive',
+  inputErrorClass: 'popup__form-item_type_error',
+  errorClass: 'form__input-error_active'
+};
+
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_type_profile');
 const closePopupProfile = document.querySelector('.popup__close-window');
