@@ -43,7 +43,6 @@ const showInputError = (formElement, inputElement, classListObject) => {
   inputElement.classList.add(classListObject.inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(classListObject.errorClass)
-  disabledButtonSubmit(buttonElement, classListObject);
 };
 
 // функция удаления класса с ошибкой
@@ -53,7 +52,6 @@ const hideInputError = (formElement, inputElement, classListObject) => {
   inputElement.classList.remove(classListObject.inputErrorClass);
   errorElement.classList.remove(classListObject.errorClass);
   errorElement.textContent = '';
-  enabledButtonSubmit(buttonElement, classListObject);
 };
 
 // проверяем валидность инпута и выводим/скрываем ошибку
