@@ -21,8 +21,6 @@ const popupImageTitle = document.querySelector('.popup__title-image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
 const buttonSubmit = formElementNewPlace.querySelector('.popup__form-button');
 
-const popupProfileInputs =  formElementProfile.querySelector('.popup__form-item');
-
 // создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
 // прослушиваем и открывает попап картинки
 const createCard = item => {
@@ -99,30 +97,12 @@ const handleAddCardsSubmit = evt => {
 // перебираем массив при добавлении карточки
 initialCards.forEach(addCard);
 
-// // function resetErrorClosePopup(formElement) {
-// function resetErrorClosePopup() {
-//   // const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
-//   const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
+// перебираем инпуты редактирования профиля, удаляем ошибки
+function resetErrorClosePopup(formElement) {
+  const formInputs = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
 
-//   // formInput.forEach(inputElement => {
-//   //   hideInputError(formElement, inputElement, classListObject);
-//   // });
-
-//   inputErrorMessage.forEach(item => {
-//     item.classList.remove(classListObject.errorClass);
-//   });
-// }
-
-function resetErrorClosePopup() {
-  // const formInput = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
-  const inputErrorMessage = Array.from(document.querySelectorAll('.popup__input-error'));
-
-  // formInput.forEach(inputElement => {
-  //   hideInputError(formElement, inputElement, classListObject);
-  // });
-
-  inputErrorMessage.forEach(item => {
-    item.classList.remove(classListObject.errorClass);
+  formInputs.forEach(inputElement => {
+    hideInputError(formElement, inputElement, classListObject);
   });
 }
 
@@ -130,10 +110,6 @@ const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
       const activePopup = document.querySelector('.popup_opened')
       closePopup(activePopup);
-
-      // if(activePopup.classList.contains('popup_type_profile')) {
-      // resetErrorClosePopup(activePopup);
-      // }
     }
 };
 
@@ -142,8 +118,7 @@ openPopupProfile.addEventListener('click', () => {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopup(popupProfile);
-  // resetErrorClosePopup();
-  hideInputError(popupProfile, popupProfileInputs, classListObject);
+  resetErrorClosePopup(popupProfile);
 });
 
 closePopupProfile.addEventListener('click', () => {
@@ -181,8 +156,6 @@ popupImage.addEventListener('click', evt => {
     closePopup(popupImage);
   }
 });
-
-// pressEscPopupListener(popupImage);
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
