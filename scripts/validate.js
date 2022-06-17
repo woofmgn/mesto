@@ -1,6 +1,3 @@
-
-const buttonElement = document.querySelector(classListObject.submitButtonSelector);
-
 // неактивный статус сабмита
 function disabledButtonSubmit(buttonElement, classListObject) {
   buttonElement.setAttribute('disabled', 'disabled');
