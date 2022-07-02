@@ -49,9 +49,26 @@ class Card {
     this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
 
+    this._addListeners();
     return this._element;
   }
 
+  _addListeners() {
+    this._element.querySelector('.element__like-button').addEventListener('click', () => {
+      this._handlerLikeCard();
+    });
+    this._element.querySelector('.element__trash-button').addEventListener('click', () => {
+      this._handlerDeleteCard();
+    })
+  }
+
+  _handlerLikeCard() {
+    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+  }
+
+  _handlerDeleteCard() {
+    this._element.querySelector('.element__trash-button').closest('.element__item').remove();
+  }
 }
 
 initialCards.forEach((item) => {
