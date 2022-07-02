@@ -1,3 +1,5 @@
+// import { popupImage, openPopup } from "./script.js";
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -59,7 +61,10 @@ class Card {
     });
     this._element.querySelector('.element__trash-button').addEventListener('click', () => {
       this._handlerDeleteCard();
-    })
+    });
+    this._element.querySelector('.element__image').addEventListener('click', () => {
+      this._handlerOpenImgPopup();
+    });
   }
 
   _handlerLikeCard() {
@@ -68,6 +73,13 @@ class Card {
 
   _handlerDeleteCard() {
     this._element.querySelector('.element__trash-button').closest('.element__item').remove();
+  }
+
+  _handlerOpenImgPopup() {
+    openPopup(popupImage);
+    document.querySelector('.popup__image-item').src = this._link;
+    document.querySelector('.popup__image-item').alt = this._name;
+    document.querySelector('.popup__title-image').textContent = this._name;
   }
 }
 
