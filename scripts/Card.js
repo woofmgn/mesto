@@ -82,10 +82,3 @@ class Card {
     document.querySelector('.popup__title-image').textContent = this._name;
   }
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '.card-template');
-  const cardElement = card.generateCard();
-
-  document.querySelector('.element').append(cardElement);
-});

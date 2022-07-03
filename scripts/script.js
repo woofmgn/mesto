@@ -30,45 +30,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
 const buttonSubmit = formElementNewPlace.querySelector('.popup__form-button');
 
-// создаем карточку, прослушиваем лайки/анлайки, прослушиваем удаление карточек,
-// прослушиваем и открывает попап картинки
-// const createCard = item => {
-//   const card = cardTemplateElement.content.querySelector('.element__item').cloneNode(true);
-//   const cardImage = card.querySelector('.element__image');
-//   const cardTitle = card.querySelector('.element__title');
-
-//   cardImage.src = item.link;
-//   cardImage.alt = item.name;
-//   cardTitle.textContent = item.name;
-
-//   card.querySelector('.element__like-button').addEventListener('click', evt => {
-//     evt.target.classList.toggle('element__like-button_active');
-//   });
-
-//   card.querySelector('.element__trash-button').addEventListener('click', evt => {
-//     evt.target.closest('.element__item').remove();
-//   });
-
-//   cardImage.addEventListener('click', () => {
-//     openPopup(popupImage);
-//     imageFullScreen(item);
-//   });
-
-//   return card;
-// };
-
-// function imageFullScreen(item) {
-//   popupImageFull.src = item.link;
-//   popupImageTitle.textContent = item.name;
-// };
-
-// добавляем карточку
-// const addCard = item => {
-//   const card = createCard(item);
-
-//   cardListElement.append(card);
-// };
-
 function openPopup(item) {
   item.classList.add('popup_opened');
   document.addEventListener('keydown', pressEscPopupListener);
@@ -86,23 +47,13 @@ function handlerEditProfileFormSubmit (evt) {
   closePopup(popupProfile);
 };
 
-//добавление новой карточки через кнопку
-// const handleAddCardsSubmit = evt => {
-//   evt.preventDefault();
+function createCard(cardElement) {
+  const card = new Card(cardElement, '.card-template');
+  const cardItem = card.generateCard();
+  cardListElement.prepend(cardItem);
+}
 
-//   const itemInput = {
-//     name: inputPlaceNameNewPlace.value,
-//     link: inputLinkNewPlace.value
-//   };
-
-//   const inputValue = createCard(itemInput);
-//   cardListElement.prepend(inputValue);
-
-//   closePopup(popupAddCards);
-//   formElementNewPlace.reset();
-//   disabledButtonSubmit(buttonSubmit, classListObject);
-// };
-
+// добавление новой карточки
 const handleAddCardsSubmit = evt => {
   evt.preventDefault();
 
@@ -111,17 +62,15 @@ const handleAddCardsSubmit = evt => {
     link: inputLinkNewPlace.value
   };
 
-  const card = new Card(itemInput, '.card-template');
-  const cardElement = card.generateCard();
-  cardListElement.prepend(cardElement);
-
+  createCard(itemInput);
   closePopup(popupAddCards);
   formElementNewPlace.reset();
   disabledButtonSubmit(buttonSubmit, classListObject);
 };
 
-// перебираем массив при добавлении карточки
-// initialCards.forEach(addCard);
+initialCards.forEach((cardElement) => {
+  createCard(cardElement);
+});
 
 // перебираем инпуты редактирования профиля, удаляем ошибки
 function resetErrorClosePopup(formElement) {
