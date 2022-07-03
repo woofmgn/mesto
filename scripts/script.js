@@ -134,3 +134,8 @@ popupImage.addEventListener('click', evt => {
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
+const profileValidator = new FormValidator(classListObject, formElementProfile);
+const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
+
+profileValidator.enableValidation();
+newPlaceValidator.enableValidation();
