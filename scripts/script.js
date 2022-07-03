@@ -87,6 +87,22 @@ function handlerEditProfileFormSubmit (evt) {
 };
 
 //добавление новой карточки через кнопку
+// const handleAddCardsSubmit = evt => {
+//   evt.preventDefault();
+
+//   const itemInput = {
+//     name: inputPlaceNameNewPlace.value,
+//     link: inputLinkNewPlace.value
+//   };
+
+//   const inputValue = createCard(itemInput);
+//   cardListElement.prepend(inputValue);
+
+//   closePopup(popupAddCards);
+//   formElementNewPlace.reset();
+//   disabledButtonSubmit(buttonSubmit, classListObject);
+// };
+
 const handleAddCardsSubmit = evt => {
   evt.preventDefault();
 
@@ -95,8 +111,9 @@ const handleAddCardsSubmit = evt => {
     link: inputLinkNewPlace.value
   };
 
-  const inputValue = createCard(itemInput);
-  cardListElement.prepend(inputValue);
+  const card = new Card(itemInput, '.card-template');
+  const cardElement = card.generateCard();
+  cardListElement.prepend(cardElement);
 
   closePopup(popupAddCards);
   formElementNewPlace.reset();
