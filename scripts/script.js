@@ -25,8 +25,6 @@ const formElementNewPlace = popupAddCards.querySelector('.popup__form_type_cards
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 const popupImage = document.querySelector('.popup_type_image');
-// const popupImageFull = document.querySelector('.popup__image-item'); возможно нужно удалить
-// const popupImageTitle = document.querySelector('.popup__title-image'); возможно нужно удалить
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
 const buttonSubmit = formElementNewPlace.querySelector('.popup__form-button');
 
@@ -65,7 +63,6 @@ const handleAddCardsSubmit = evt => {
   createCard(itemInput);
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  // disabledButtonSubmit(buttonSubmit, classListObject);
   newPlaceValidator._disabledButtonSubmit();
 };
 
