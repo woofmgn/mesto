@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(classListObject, formElement) {
     this._formSelector = classListObject.formSelector;
     this._inputSelector = classListObject.inputSelector;
@@ -19,7 +19,7 @@ class FormValidator {
     // меняем состояние сабмита, при наличии ошибки ввода в инпуте
   _toggleButtonState() {
     if(this._hasInvalidInput()) {
-      this._disabledButtonSubmit();
+      this.disabledButtonSubmit();
     }else{
       this._enabledButtonSubmit();
     }
@@ -48,14 +48,14 @@ class FormValidator {
     });
   }
 
-    // сброс ошибок, метом передается в слушатель открытия попапа редактирования профиля
+    // сброс ошибок, метод передается в слушатель открытия попапа редактирования профиля
   resetError() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
   }
 
-  _disabledButtonSubmit() {
+  disabledButtonSubmit() {
     this._buttonElement.setAttribute('disabled', 'disabled');
     this._buttonElement.classList.add(this._inactiveButtonClass);
   };

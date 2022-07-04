@@ -1,6 +1,6 @@
-// import { popupImage, openPopup } from "./script.js";
+import { popupImage, openPopup } from "./index.js";
 
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;

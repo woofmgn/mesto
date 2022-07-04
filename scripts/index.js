@@ -1,3 +1,7 @@
+import { initialCards } from "./initial-cards.js";
+import { Card } from "./Card.js"
+import { FormValidator } from "./FormValidator.js";
+
 const classListObject = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-item',
@@ -15,20 +19,20 @@ const userName = document.querySelector('.profile__title');
 const userJob = document.querySelector('.profile__subtitle');
 const nameInput = formElementProfile.querySelector('.popup__form-item_type_name');
 const jobInput = formElementProfile.querySelector('.popup__form-item_type_job');
-const saveUserInput = formElementProfile.querySelector('.popup__form-button');
 const popupAddCards = document.querySelector('.popup_type_cards');
 const openPopupAddCards = document.querySelector('.profile__add-button');
 const closePopupAddCards = popupAddCards.querySelector('.popup__close-window');
 const cardListElement = document.querySelector('.element');
-const cardTemplateElement = document.querySelector('.card-template');
 const formElementNewPlace = popupAddCards.querySelector('.popup__form_type_cards');
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
-const popupImage = document.querySelector('.popup_type_image');
+export const popupImage = document.querySelector('.popup_type_image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
-const buttonSubmit = formElementNewPlace.querySelector('.popup__form-button');
 
-function openPopup(item) {
+const profileValidator = new FormValidator(classListObject, formElementProfile);
+const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
+
+export function openPopup(item) {
   item.classList.add('popup_opened');
   document.addEventListener('keydown', pressEscPopupListener);
 };
@@ -43,6 +47,7 @@ function handlerEditProfileFormSubmit (evt) {
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
   closePopup(popupProfile);
+  profileValidator.disabledButtonSubmit();
 };
 
 function createCard(cardElement) {
@@ -63,7 +68,7 @@ const handleAddCardsSubmit = evt => {
   createCard(itemInput);
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  newPlaceValidator._disabledButtonSubmit();
+  newPlaceValidator.disabledButtonSubmit();
 };
 
 initialCards.forEach((cardElement) => {
@@ -122,9 +127,6 @@ popupImage.addEventListener('click', evt => {
 });
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
-
-const profileValidator = new FormValidator(classListObject, formElementProfile);
-const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
