@@ -65,21 +65,13 @@ const handleAddCardsSubmit = evt => {
   createCard(itemInput);
   closePopup(popupAddCards);
   formElementNewPlace.reset();
-  disabledButtonSubmit(buttonSubmit, classListObject);
+  // disabledButtonSubmit(buttonSubmit, classListObject);
+  newPlaceValidator._disabledButtonSubmit();
 };
 
 initialCards.forEach((cardElement) => {
   createCard(cardElement);
 });
-
-// перебираем инпуты редактирования профиля, удаляем ошибки
-function resetErrorClosePopup(formElement) {
-  const formInputs = Array.from(formElement.querySelectorAll(classListObject.inputSelector));
-
-  formInputs.forEach(inputElement => {
-    hideInputError(formElement, inputElement, classListObject);
-  });
-}
 
 const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
@@ -93,7 +85,7 @@ openPopupProfile.addEventListener('click', () => {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopup(popupProfile);
-  resetErrorClosePopup(popupProfile);
+  profileValidator.resetError();
 });
 
 closePopupProfile.addEventListener('click', () => {
