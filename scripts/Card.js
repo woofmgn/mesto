@@ -1,4 +1,4 @@
-import { popupImage, openPopup } from "./index.js";
+import { popupImage,  popupImageFull, popupImageTitle, openPopup } from "./index.js";
 
 export class Card {
   constructor(data, cardSelector) {
@@ -45,13 +45,14 @@ export class Card {
   }
 
   _handlerDeleteCard() {
-    this._element.querySelector('.element__trash-button').closest('.element__item').remove();
+    this._element.remove();
+    this._element = null;
   }
 
   _handlerOpenImgPopup() {
+    popupImageFull.src = this._link;
+    popupImageFull.alt = this._name;
+    popupImageTitle.textContent = this._name;
     openPopup(popupImage);
-    document.querySelector('.popup__image-item').src = this._link;
-    document.querySelector('.popup__image-item').alt = this._name;
-    document.querySelector('.popup__title-image').textContent = this._name;
   }
 }

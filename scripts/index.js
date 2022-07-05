@@ -11,9 +11,9 @@ const classListObject = {
   errorClass: 'form__input-error_active'
 };
 
-const openPopupProfile = document.querySelector('.profile__edit-button');
+const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_type_profile');
-const closePopupProfile = document.querySelector('.popup__close-window');
+const buttonClosePopupProfile = document.querySelector('.popup__close-window');
 const formElementProfile = popupProfile.querySelector('.popup__form_type_profile');
 const userName = document.querySelector('.profile__title');
 const userJob = document.querySelector('.profile__subtitle');
@@ -28,7 +28,8 @@ const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-i
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 export const popupImage = document.querySelector('.popup_type_image');
 const popupImageClose = document.querySelector('.popup__close-window_type_image');
-
+export const popupImageFull = document.querySelector('.popup__image-item');
+export const popupImageTitle = document.querySelector('.popup__title-image');
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 
@@ -83,14 +84,14 @@ const pressEscPopupListener = (evt) => {
 };
 
 // слушаем открытие/закрытие попапов
-openPopupProfile.addEventListener('click', () => {
+buttonOpenPopupProfile.addEventListener('click', () => {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopup(popupProfile);
   profileValidator.resetError();
 });
 
-closePopupProfile.addEventListener('click', () => {
+buttonClosePopupProfile.addEventListener('click', () => {
   closePopup(popupProfile);
 });
 
