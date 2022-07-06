@@ -20,8 +20,8 @@ const userJob = document.querySelector('.profile__subtitle');
 const nameInput = formElementProfile.querySelector('.popup__form-item_type_name');
 const jobInput = formElementProfile.querySelector('.popup__form-item_type_job');
 const popupAddCards = document.querySelector('.popup_type_cards');
-const openPopupAddCards = document.querySelector('.profile__add-button');
-const closePopupAddCards = popupAddCards.querySelector('.popup__close-window');
+const buttonOpenPopupAddCards = document.querySelector('.profile__add-button');
+const buttonClosePopupAddCards = popupAddCards.querySelector('.popup__close-window');
 const cardListElement = document.querySelector('.element');
 const formElementNewPlace = popupAddCards.querySelector('.popup__form_type_cards');
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
@@ -54,10 +54,23 @@ function handlerEditProfileFormSubmit (evt) {
 function createCard(cardElement) {
   const card = new Card(cardElement, '.card-template');
   const cardItem = card.generateCard();
-  cardListElement.prepend(cardItem);
+  return cardItem;
+  // cardListElement.prepend(cardItem);
 }
 
-// добавление новой карточки
+// рендер новой карточки пользователя
+function renderUserCard(cardElement) {
+  const userCard = createCard(cardElement);
+  cardListElement.prepend(userCard);
+}
+
+// рендер дефолтных карточек при загрузке страницы
+function renderDefaultCard(cardElement) {
+  const defaultCard = createCard(cardElement);
+  cardListElement.append(defaultCard);
+}
+
+// добавление новой карточки пользователем
 const handleAddCardsSubmit = evt => {
   evt.preventDefault();
 
@@ -66,14 +79,15 @@ const handleAddCardsSubmit = evt => {
     link: inputLinkNewPlace.value
   };
 
-  createCard(itemInput);
+  renderUserCard(itemInput);
   closePopup(popupAddCards);
   formElementNewPlace.reset();
   newPlaceValidator.disabledButtonSubmit();
 };
 
+// добавление дефолтных карточек при загрузке страницы
 initialCards.forEach((cardElement) => {
-  createCard(cardElement);
+  renderDefaultCard(cardElement);
 });
 
 const pressEscPopupListener = (evt) => {
@@ -97,11 +111,11 @@ buttonClosePopupProfile.addEventListener('click', () => {
 
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
-openPopupAddCards.addEventListener('click', () => {
+buttonOpenPopupAddCards.addEventListener('click', () => {
   openPopup(popupAddCards);
 });
 
-closePopupAddCards.addEventListener('click', () => {
+buttonClosePopupAddCards.addEventListener('click', () => {
   closePopup(popupAddCards);
 });
 
