@@ -27,9 +27,10 @@ const formElementNewPlace = popupAddCards.querySelector('.popup__form_type_cards
 const inputPlaceNameNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_place');
 const inputLinkNewPlace = formElementNewPlace.querySelector('.popup__form-item_type_link');
 export const popupImage = document.querySelector('.popup_type_image');
-const popupImageClose = document.querySelector('.popup__close-window_type_image');
 export const popupImageFull = document.querySelector('.popup__image-item');
 export const popupImageTitle = document.querySelector('.popup__title-image');
+const popupImageClose = document.querySelector('.popup__close-window_type_image');
+
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 
@@ -55,7 +56,6 @@ function createCard(cardElement) {
   const card = new Card(cardElement, '.card-template');
   const cardItem = card.generateCard();
   return cardItem;
-  // cardListElement.prepend(cardItem);
 }
 
 // рендер новой карточки пользователя
