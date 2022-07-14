@@ -1,6 +1,7 @@
 import { initialCards } from "./initial-cards.js";
 import { Card } from "./Card.js"
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
 
 const classListObject = {
   formSelector: '.popup__form',
@@ -34,6 +35,15 @@ const popupImageClose = document.querySelector('.popup__close-window_type_image'
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 
+const defaultCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+      const card = new Card(item, '.card-template');
+      const cardItem = card.generateCard();
+      defaultCardList.addItem(cardItem);
+    }
+}, cardListElement);
+
 export function openPopup(item) {
   item.classList.add('popup_opened');
   document.addEventListener('keydown', pressEscPopupListener);
@@ -58,17 +68,17 @@ function createCard(cardElement) {
   return cardItem;
 }
 
-// рендер новой карточки пользователя
-function renderUserCard(cardElement) {
-  const userCard = createCard(cardElement);
-  cardListElement.prepend(userCard);
-}
+// // рендер новой карточки пользователя
+// function renderUserCard(cardElement) {
+//   const userCard = createCard(cardElement);
+//   cardListElement.prepend(userCard);
+// }
 
-// рендер дефолтных карточек при загрузке страницы
-function renderDefaultCard(cardElement) {
-  const defaultCard = createCard(cardElement);
-  cardListElement.append(defaultCard);
-}
+// // рендер дефолтных карточек при загрузке страницы
+// function renderDefaultCard(cardElement) {
+//   const defaultCard = createCard(cardElement);
+//   cardListElement.append(defaultCard);
+// }
 
 // добавление новой карточки пользователем
 const handleAddCardsSubmit = evt => {
@@ -86,9 +96,9 @@ const handleAddCardsSubmit = evt => {
 };
 
 // добавление дефолтных карточек при загрузке страницы
-initialCards.forEach((cardElement) => {
-  renderDefaultCard(cardElement);
-});
+// initialCards.forEach((cardElement) => {
+//   renderDefaultCard(cardElement);
+// });
 
 const pressEscPopupListener = (evt) => {
     if(evt.key === 'Escape') {
@@ -142,6 +152,8 @@ popupImage.addEventListener('click', evt => {
 });
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
+
+defaultCardList.renderItems();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
