@@ -3,6 +3,7 @@ import { Card } from "./Card.js"
 import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const classListObject = {
   formSelector: '.popup__form',
@@ -36,10 +37,17 @@ const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace
 const popupOpenProfile = new Popup(popupProfile);
 const popupOpenAddCard = new Popup(popupAddCards);
 
+const popupOpenImage = new PopupWithImage(popupImage);
+popupOpenImage.setEventListeners();
+
+function handleCardClick(link, title) {
+  popupOpenImage.open(link, title);
+}
+
 const defaultCardList = new Section({
   items: initialCards,
   renderer: (item) => {
-      const card = new Card(item, '.card-template');
+      const card = new Card(item, '.card-template', handleCardClick);
       const cardItem = card.generateCard();
       defaultCardList.addItem(cardItem);
     }
@@ -54,7 +62,7 @@ function handlerEditProfileFormSubmit (evt) {
 };
 
 function createCard(cardElement) {
-  const card = new Card(cardElement, '.card-template');
+  const card = new Card(cardElement, '.card-template', handleCardClick);
   const cardItem = card.generateCard();
   return cardItem;
 }
@@ -103,3 +111,4 @@ defaultCardList.renderItems();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
+

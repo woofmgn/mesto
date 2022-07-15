@@ -1,12 +1,9 @@
-// import { popupImage, popupImageFull, popupImageTitle, openPopup } from "./index.js"
-import { popupImage, popupImageFull, popupImageTitle } from "./index.js"
-import Popup from "./Popup.js";
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handlerOpenImgPopup) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handlerOpenImgPopup = handlerOpenImgPopup;
   }
 
   _getTemplate() {
@@ -39,7 +36,7 @@ export class Card {
       this._handlerDeleteCard();
     });
     this._elementImage.addEventListener('click', () => {
-      this._handlerOpenImgPopup();
+      this._handlerOpenImgPopup(this._link, this._name);
     });
   }
 
@@ -52,12 +49,12 @@ export class Card {
     this._element = null;
   }
 
-  _handlerOpenImgPopup() {
-    popupImageFull.src = this._link;
-    popupImageFull.alt = this._name;
-    popupImageTitle.textContent = this._name;
-    const popupOpenImage = new Popup(popupImage);
-    popupOpenImage.open();
-    popupOpenImage.setEventListeners();
-  }
+  // _handlerOpenImgPopup() {
+    // popupImageFull.src = this._link;
+    // popupImageFull.alt = this._name;
+    // popupImageTitle.textContent = this._name;
+  //   const popupOpenImage = new PopupWithImage(popupImage);
+  //   popupOpenImage.open();
+  //   popupOpenImage.setEventListeners();
+  // }
 }
