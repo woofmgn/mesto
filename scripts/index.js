@@ -4,6 +4,7 @@ import { FormValidator } from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const classListObject = {
   formSelector: '.popup__form',
@@ -39,6 +40,10 @@ const popupOpenAddCard = new Popup(popupAddCards);
 
 const popupOpenImage = new PopupWithImage(popupImage);
 popupOpenImage.setEventListeners();
+
+// const profileForm = new PopupWithForm(formElementProfile, handlerEditProfileFormSubmit);
+
+
 
 function handleCardClick(link, title) {
   popupOpenImage.open(link, title);
@@ -84,9 +89,12 @@ const handleAddCardsSubmit = evt => {
 
   renderUserCard(itemInput);
   popupOpenAddCard.close();
-  formElementNewPlace.reset();
+  // formElementNewPlace.reset();
   newPlaceValidator.disabledButtonSubmit();
 };
+
+const newPlaceForm = new PopupWithForm(formElementNewPlace, handleAddCardsSubmit);
+newPlaceForm.setEventListeners();
 
 // слушаем открытие/закрытие попапов
 buttonOpenPopupProfile.addEventListener('click', () => {

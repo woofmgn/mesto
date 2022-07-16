@@ -23,8 +23,6 @@ export default class Popup {
     });
   }
 
-
-
   setEventListeners() {
     this._popupSelector.addEventListener('click', evt => {
       if(evt.target.classList.contains('popup__close-window')){
