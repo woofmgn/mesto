@@ -36,14 +36,9 @@ const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 
 const popupOpenProfile = new Popup(popupProfile);
-const popupOpenAddCard = new Popup(popupAddCards);
 
 const popupOpenImage = new PopupWithImage(popupImage);
 popupOpenImage.setEventListeners();
-
-// const profileForm = new PopupWithForm(formElementProfile, handlerEditProfileFormSubmit);
-
-
 
 function handleCardClick(link, title) {
   popupOpenImage.open(link, title);
@@ -82,18 +77,17 @@ function renderUserCard(cardElement) {
 const handleAddCardsSubmit = evt => {
   evt.preventDefault();
 
-  const itemInput = {
-    name: inputPlaceNameNewPlace.value,
-    link: inputLinkNewPlace.value
-  };
+  // const itemInput = {
+  //   name: inputPlaceNameNewPlace.value,
+  //   link: inputLinkNewPlace.value
+  // };
 
   renderUserCard(itemInput);
-  popupOpenAddCard.close();
-  // formElementNewPlace.reset();
+  newPlaceForm.close();
   newPlaceValidator.disabledButtonSubmit();
 };
 
-const newPlaceForm = new PopupWithForm(formElementNewPlace, handleAddCardsSubmit);
+const newPlaceForm = new PopupWithForm(popupAddCards, handleAddCardsSubmit);
 newPlaceForm.setEventListeners();
 
 // слушаем открытие/закрытие попапов
@@ -107,11 +101,11 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 formElementProfile.addEventListener('submit', handlerEditProfileFormSubmit);
 
 buttonOpenPopupAddCards.addEventListener('click', () => {
-  popupOpenAddCard.open();
+  newPlaceValidator.resetError();
+  newPlaceForm.open();
 });
 
 popupOpenProfile.setEventListeners();
-popupOpenAddCard.setEventListeners();
 
 formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
