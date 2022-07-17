@@ -53,15 +53,6 @@ const defaultCardList = new Section({
     }
 }, cardListElement);
 
-// const userCardList = new Section({
-//   items: initialCards,
-//   renderer: (item) => {
-//       const card = new Card(item, '.card-template', handleCardClick);
-//       const cardItem = card.generateCard();
-//       userCardList.addItem(cardItem);
-//     }
-// }, cardListElement);
-
 function handlerEditProfileFormSubmit (evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
@@ -76,38 +67,9 @@ function createCard(cardElement) {
   return cardItem;
 }
 
-// рендер новой карточки пользователя
-function renderUserCard(cardElement) {
-  const userCard = createCard(cardElement);
-  cardListElement.prepend(userCard);
-}
-
-// добавление новой карточки пользователем
-// const handleAddCardsSubmit = evt => {
-//   evt.preventDefault();
-
-//   // const itemInput = {
-//   //   name: inputPlaceNameNewPlace.value,
-//   //   link: inputLinkNewPlace.value
-//   // };
-
-//   renderUserCard(itemInput);
-//   newPlaceForm.close();
-//   newPlaceValidator.disabledButtonSubmit();
-// };
-
 const handleAddCardsSubmit = cardElement => {
-
-  // defaultCardList.renderUserCard(cardElement);
-  // const userCard = createCard(cardElement);
-
-  // const userCard = renderUserCard(cardElement);
-  // renderUserCard(cardElement);
-  // defaultCardList.addItem(userCard);
-
   const userCard = createCard(cardElement);
   defaultCardList.addItem(userCard);
-
   newPlaceForm.close();
   newPlaceValidator.disabledButtonSubmit();
 };
@@ -131,8 +93,6 @@ buttonOpenPopupAddCards.addEventListener('click', () => {
 });
 
 popupOpenProfile.setEventListeners();
-
-formElementNewPlace.addEventListener('submit', handleAddCardsSubmit);
 
 defaultCardList.renderItems();
 
