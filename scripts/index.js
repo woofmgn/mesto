@@ -5,6 +5,7 @@ import Section from "./Section.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js"
 
 const classListObject = {
   formSelector: '.popup__form',
@@ -12,7 +13,9 @@ const classListObject = {
   submitButtonSelector: '.popup__form-button',
   inactiveButtonClass: 'popup__form-button_inactive',
   inputErrorClass: 'popup__form-item_type_error',
-  errorClass: 'form__input-error_active'
+  errorClass: 'form__input-error_active',
+  userNameClass: '.profile__title',
+  userJobClass: '.profile__subtitle'
 };
 
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
@@ -38,6 +41,9 @@ const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace
 const popupOpenProfile = new Popup(popupProfile);
 
 const popupOpenImage = new PopupWithImage(popupImage);
+
+const userInfo = new UserInfo(classListObject);
+
 popupOpenImage.setEventListeners();
 
 function handleCardClick(link, title) {
@@ -52,6 +58,14 @@ const defaultCardList = new Section({
       defaultCardList.addItem(cardItem);
     }
 }, cardListElement);
+
+// function handlerEditProfileFormSubmit (evt) {
+//   evt.preventDefault();
+//   userName.textContent = nameInput.value;
+//   userJob.textContent = jobInput.value;
+//   popupOpenProfile.close();
+//   profileValidator.disabledButtonSubmit();
+// };
 
 function handlerEditProfileFormSubmit (evt) {
   evt.preventDefault();
@@ -77,10 +91,16 @@ const handleAddCardsSubmit = cardElement => {
 const newPlaceForm = new PopupWithForm(popupAddCards, handleAddCardsSubmit);
 newPlaceForm.setEventListeners();
 
-// слушаем открытие/закрытие попапов
+function importInputs(item) {
+  nameInput.value = item.formName;
+  jobInput.value = item.formJob;
+}
+
+// слушаем открытие попана профиля, подставляем в инпуты данные из разметки
 buttonOpenPopupProfile.addEventListener('click', () => {
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
+  const inputList = userInfo.getUserInfo();
+
+  importInputs(inputList);
   popupOpenProfile.open();
   profileValidator.resetError();
 });
