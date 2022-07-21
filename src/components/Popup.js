@@ -30,7 +30,5 @@ export default class Popup {
       }else if(evt.target.classList.contains('popup_opened'))
         this.close();
     });
-
   }
-
 }

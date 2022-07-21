@@ -1,11 +1,14 @@
-import { initialCards } from "./initial-cards.js";
-import { Card } from "./Card.js"
-import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js";
-import Popup from "./Popup.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js"
+import '../src/pages/index.css';
+
+
+import { initialCards } from "../src/scripts/initial-cards.js";
+import { Card } from "../src/components/Card.js"
+import { FormValidator } from "../src/components/FormValidator.js";
+import Section from "../src/components/Section.js";
+import Popup from "../src/components/Popup.js";
+import PopupWithImage from "../src/components/PopupWithImage.js";
+import PopupWithForm from "../src/components/PopupWithForm.js";
+import UserInfo from "../src/components/UserInfo.js"
 
 const classListObject = {
   formSelector: '.popup__form',
@@ -100,4 +103,3 @@ popupOpenImage.setEventListeners();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
-

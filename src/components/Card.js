@@ -48,13 +48,4 @@ export class Card {
     this._element.remove();
     this._element = null;
   }
-
-  // _handlerOpenImgPopup() {
-    // popupImageFull.src = this._link;
-    // popupImageFull.alt = this._name;
-    // popupImageTitle.textContent = this._name;
-  //   const popupOpenImage = new PopupWithImage(popupImage);
-  //   popupOpenImage.open();
-  //   popupOpenImage.setEventListeners();
-  // }
 }
