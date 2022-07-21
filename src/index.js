@@ -24,7 +24,7 @@ import UserInfo from "../src/components/UserInfo.js"
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
-const popupOpenProfile = new Popup(popupProfile);
+// const popupOpenProfile = new Popup(popupProfile);
 const popupOpenImage = new PopupWithImage(popupImage);
 const userInfo = new UserInfo(classListObject);
 
@@ -43,7 +43,7 @@ const defaultCardList = new Section({
 
 function handlerEditProfileFormSubmit (item) {
   userInfo.setUserInfo(item);
-  popupOpenProfile.close();
+  popupUserProfile.close();
   profileValidator.disabledButtonSubmit();
 };
 
@@ -75,7 +75,7 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   const inputList = userInfo.getUserInfo();
 
   importDefaultInputs(inputList);
-  popupOpenProfile.open();
+  popupUserProfile.open();
   profileValidator.resetError();
 });
 
@@ -86,7 +86,7 @@ buttonOpenPopupAddCards.addEventListener('click', () => {
 
 defaultCardList.renderItems();
 
-popupOpenProfile.setEventListeners();
+popupUserProfile.setEventListeners();
 popupOpenImage.setEventListeners();
 
 profileValidator.enableValidation();
