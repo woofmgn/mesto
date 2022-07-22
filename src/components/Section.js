@@ -6,6 +6,8 @@ export default class Section {
   }
 
   addItem(element) {
+    // const card = this._renderer(item)
+    // this._container.prepend(card);
     this._container.prepend(element);
   }
 

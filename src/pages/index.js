@@ -4,8 +4,6 @@ import {
   classListObject,
   buttonOpenPopupProfile,
   formElementProfile,
-  nameInput,
-  jobInput,
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
@@ -16,7 +14,6 @@ import { initialCards } from "../utils/initial-cards.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js"
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -62,16 +59,10 @@ const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit
 newPlaceForm.setEventListeners();
 const popupUserProfile = new PopupWithForm('.popup_type_profile', handleEditProfileFormSubmit);
 
-
-function importDefaultInputs(item) {
-  nameInput.value = item.formName;
-  jobInput.value = item.formJob;
-}
-
 buttonOpenPopupProfile.addEventListener('click', () => {
   const inputList = userInfo.getUserInfo();
 
-  importDefaultInputs(inputList);
+  popupUserProfile.setInputValues(inputList)
   profileValidator.resetError();
   profileValidator.disabledButtonSubmit();
   popupUserProfile.open();
