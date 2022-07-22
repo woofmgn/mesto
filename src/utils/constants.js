@@ -10,25 +10,21 @@ const classListObject = {
 };
 
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup_type_profile');
-const formElementProfile = popupProfile.querySelector('.popup__form_type_profile');
-const nameInput = formElementProfile.querySelector('.popup__form-item_type_name');
-const jobInput = formElementProfile.querySelector('.popup__form-item_type_job');
-const popupAddCards = document.querySelector('.popup_type_cards');
+const formElementProfile = document.querySelector('.popup__form_type_profile');
+const nameInput = document.querySelector('.popup__form-item_type_name');
+const jobInput = document.querySelector('.popup__form-item_type_job');
 const buttonOpenPopupAddCards = document.querySelector('.profile__add-button');
 const cardListElement = document.querySelector('.element');
-const formElementNewPlace = popupAddCards.querySelector('.popup__form_type_cards');
-const popupImage = document.querySelector('.popup_type_image');
+const formElementNewPlace = document.querySelector('.popup__form_type_cards');
+
 
 export {
   classListObject,
   buttonOpenPopupProfile,
-  popupProfile,
   formElementProfile,
   nameInput,
   jobInput,
-  popupAddCards,
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
-  popupImage };
+  }
