@@ -14,13 +14,13 @@ import {
   popupImage } from '../src/utils/constants.js';
 
 import { initialCards } from "../src/utils/initial-cards.js";
-import { Card } from "../src/components/Card.js"
+import { Card } from "../src/components/Card.js";
 import { FormValidator } from "../src/components/FormValidator.js";
 import Section from "../src/components/Section.js";
 import Popup from "../src/components/Popup.js";
 import PopupWithImage from "../src/components/PopupWithImage.js";
 import PopupWithForm from "../src/components/PopupWithForm.js";
-import UserInfo from "../src/components/UserInfo.js"
+import UserInfo from "../src/components/UserInfo.js";
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
@@ -60,10 +60,10 @@ const handleAddCardsSubmit = cardElement => {
   newPlaceValidator.disabledButtonSubmit();
 };
 
-const newPlaceForm = new PopupWithForm(popupAddCards, handleAddCardsSubmit);
+const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit);
 newPlaceForm.setEventListeners();
 
-const popupUserProfile = new PopupWithForm(popupProfile, handlerEditProfileFormSubmit);
+const popupUserProfile = new PopupWithForm('.popup_type_profile', handlerEditProfileFormSubmit);
 popupUserProfile.setEventListeners();
 
 function importDefaultInputs(item) {

@@ -31,4 +31,4 @@ export {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
-  popupImage }
+  popupImage };
