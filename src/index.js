@@ -16,6 +16,7 @@ import { initialCards } from "../src/utils/initial-cards.js";
 import { Card } from "../src/components/Card.js";
 import { FormValidator } from "../src/components/FormValidator.js";
 import Section from "../src/components/Section.js";
+import Popup from "../src/components/Popup.js"
 import PopupWithImage from "../src/components/PopupWithImage.js";
 import PopupWithForm from "../src/components/PopupWithForm.js";
 import UserInfo from "../src/components/UserInfo.js";
