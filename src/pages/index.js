@@ -1,4 +1,4 @@
-import '../src/pages/index.css';
+import '../pages/index.css'
 
 import {
   classListObject,
@@ -9,17 +9,17 @@ import {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
-  } from '../src/utils/constants.js';
+  } from '../utils/constants.js';
 
 
-import { initialCards } from "../src/utils/initial-cards.js";
-import { Card } from "../src/components/Card.js";
-import { FormValidator } from "../src/components/FormValidator.js";
-import Section from "../src/components/Section.js";
-import Popup from "../src/components/Popup.js"
-import PopupWithImage from "../src/components/PopupWithImage.js";
-import PopupWithForm from "../src/components/PopupWithForm.js";
-import UserInfo from "../src/components/UserInfo.js";
+import { initialCards } from "../utils/initial-cards.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js"
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
@@ -34,16 +34,14 @@ function handleCardClick(link, title) {
 const defaultCardList = new Section({
   items: initialCards,
   renderer: (item) => {
-      const card = new Card(item, '.card-template', handleCardClick);
-      const cardItem = card.generateCard();
-      defaultCardList.addItem(cardItem);
+      const card = createCard(item)
+      defaultCardList.addItem(card);
     }
 }, cardListElement);
 
-function handlerEditProfileFormSubmit (item) {
+function handleEditProfileFormSubmit (item) {
   userInfo.setUserInfo(item);
   popupUserProfile.close();
-  profileValidator.disabledButtonSubmit();
 };
 
 function createCard(cardElement) {
@@ -56,14 +54,13 @@ const handleAddCardsSubmit = cardElement => {
   const userCard = createCard(cardElement);
   defaultCardList.addItem(userCard);
   newPlaceForm.close();
-  newPlaceValidator.disabledButtonSubmit();
 };
 
 
 const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit);
 
 newPlaceForm.setEventListeners();
-const popupUserProfile = new PopupWithForm('.popup_type_profile', handlerEditProfileFormSubmit);
+const popupUserProfile = new PopupWithForm('.popup_type_profile', handleEditProfileFormSubmit);
 
 
 function importDefaultInputs(item) {
@@ -75,12 +72,14 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   const inputList = userInfo.getUserInfo();
 
   importDefaultInputs(inputList);
-  popupUserProfile.open();
   profileValidator.resetError();
+  profileValidator.disabledButtonSubmit();
+  popupUserProfile.open();
 });
 
 buttonOpenPopupAddCards.addEventListener('click', () => {
   newPlaceValidator.resetError();
+  newPlaceValidator.disabledButtonSubmit();
   newPlaceForm.open();
 });
 
