@@ -1,18 +1,15 @@
-import '../src/pages/index.css';
+import '../pages/index.css'
 
 import {
   classListObject,
   buttonOpenPopupProfile,
-  popupProfile,
   formElementProfile,
-  nameInput,
-  jobInput,
-  popupAddCards,
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
-  popupImage } from '../src/utils/constants.js';
+  } from '../utils/constants.js';
 
+<<<<<<< HEAD:src/index.js
 import { initialCards } from "../src/utils/initial-cards.js";
 import { Card } from "../src/components/Card.js"
 import { FormValidator } from "../src/components/FormValidator.js";
@@ -24,6 +21,23 @@ import UserInfo from "../src/components/UserInfo.js"
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
 const popupOpenImage = new PopupWithImage(popupImage);
+=======
+import { initialCards } from "../utils/initial-cards.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+
+const profileValidator = new FormValidator(classListObject, formElementProfile);
+const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
+
+const popupOpenImage = new PopupWithImage('.popup_type_image');
+const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit);
+const popupUserProfile = new PopupWithForm('.popup_type_profile', handleEditProfileFormSubmit);
+
+>>>>>>> main:src/pages/index.js
 const userInfo = new UserInfo(classListObject);
 
 function handleCardClick(link, title) {
@@ -33,17 +47,10 @@ function handleCardClick(link, title) {
 const defaultCardList = new Section({
   items: initialCards,
   renderer: (item) => {
-      const card = new Card(item, '.card-template', handleCardClick);
-      const cardItem = card.generateCard();
-      defaultCardList.addItem(cardItem);
+      const card = createCard(item)
+      defaultCardList.addItem(card);
     }
 }, cardListElement);
-
-function handlerEditProfileFormSubmit (item) {
-  userInfo.setUserInfo(item);
-  popupUserProfile.close();
-  profileValidator.disabledButtonSubmit();
-};
 
 function createCard(cardElement) {
   const card = new Card(cardElement, '.card-template', handleCardClick);
@@ -51,13 +58,18 @@ function createCard(cardElement) {
   return cardItem;
 }
 
-const handleAddCardsSubmit = cardElement => {
+function handleEditProfileFormSubmit(item) {
+  userInfo.setUserInfo(item);
+  popupUserProfile.close();
+};
+
+function handleAddCardsSubmit(cardElement) {
   const userCard = createCard(cardElement);
   defaultCardList.addItem(userCard);
   newPlaceForm.close();
-  newPlaceValidator.disabledButtonSubmit();
 };
 
+<<<<<<< HEAD:src/index.js
 const newPlaceForm = new PopupWithForm(popupAddCards, handleAddCardsSubmit);
 newPlaceForm.setEventListeners();
 
@@ -68,21 +80,26 @@ function importDefaultInputs(item) {
   jobInput.value = item.formJob;
 }
 
+=======
+>>>>>>> main:src/pages/index.js
 buttonOpenPopupProfile.addEventListener('click', () => {
   const inputList = userInfo.getUserInfo();
 
-  importDefaultInputs(inputList);
-  popupUserProfile.open();
+  popupUserProfile.setInputValues(inputList)
   profileValidator.resetError();
+  profileValidator.disabledButtonSubmit();
+  popupUserProfile.open();
 });
 
 buttonOpenPopupAddCards.addEventListener('click', () => {
   newPlaceValidator.resetError();
+  newPlaceValidator.disabledButtonSubmit();
   newPlaceForm.open();
 });
 
 defaultCardList.renderItems();
 
+newPlaceForm.setEventListeners();
 popupUserProfile.setEventListeners();
 popupOpenImage.setEventListeners();
 
