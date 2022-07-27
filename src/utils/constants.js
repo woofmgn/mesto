@@ -14,6 +14,14 @@ const formElementProfile = document.querySelector('.popup__form_type_profile');
 const buttonOpenPopupAddCards = document.querySelector('.profile__add-button');
 const cardListElement = document.querySelector('.element');
 const formElementNewPlace = document.querySelector('.popup__form_type_cards');
+const settingsApi = {
+    url: 'https://mesto.nomoreparties.co/v1/cohort-47',
+    headers:
+    { headers: {
+      authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
+      }
+    }
+};
 
 
 export {
@@ -23,4 +31,5 @@ export {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
+  settingsApi
   }

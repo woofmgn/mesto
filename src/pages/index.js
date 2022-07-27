@@ -7,6 +7,7 @@ import {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
+  settingsApi
   } from '../utils/constants.js';
 
 import { initialCards } from "../utils/initial-cards.js";
@@ -16,6 +17,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js"
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
@@ -30,8 +32,25 @@ function handleCardClick(link, title) {
   popupOpenImage.open(link, title);
 }
 
+
+const api = new Api(settingsApi);
+
+let userId;
+
+api.getInitialCards()
+  .then(render => {
+    defaultCardList.renderItems(render)
+  })
+  .catch(err => console.log(err))
+
+api.getUserProfile()
+  .then(render => {
+    console.log(render);
+  })
+  .catch(err => console.log(err))
+
 const defaultCardList = new Section({
-  items: initialCards,
+  // items: initialCards,
   renderer: (item) => {
       const card = createCard(item)
       defaultCardList.addItem(card);
@@ -70,7 +89,7 @@ buttonOpenPopupAddCards.addEventListener('click', () => {
   newPlaceForm.open();
 });
 
-defaultCardList.renderItems();
+// defaultCardList.renderItems();
 
 newPlaceForm.setEventListeners();
 popupUserProfile.setEventListeners();
@@ -78,3 +97,8 @@ popupOpenImage.setEventListeners();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
+
+
+
+// const api = new Api(settingsApi);
+// console.log(api.getInitialCards());
