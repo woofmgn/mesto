@@ -37,20 +37,42 @@ const api = new Api(settingsApi);
 
 let userId;
 
-api.getInitialCards()
-  .then(render => {
-    defaultCardList.renderItems(render)
-  })
-  .catch(err => console.log(err))
+// Promise.all([api.getInitialUser(),api.getInitialCards()])
+//     .then(([userData,cards])=>{
+//         userInfo.setUserInfo(userData);
+//         userId=userData._id;
+//         cards.reverse().map((card) => renderCard(card));
+//     })
+//     .catch((err) => {
+//         console.log(`Ошибка: ${err}`);
+//     })
 
-api.getUserProfile()
-  .then(render => {
-    console.log(render);
-  })
-  .catch(err => console.log(err))
+Promise.all([api.getInitialCards(), api.getUserProfile()])
+    .then(([cards, userProfile]) => {
+        userInfo.setUserInfo(userProfile);
+        userId = userProfile._id;
+        defaultCardList.renderItems(cards);
+    })
+    .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+    })
+
+// api.getInitialCards()
+//   .then(render => {
+//     defaultCardList.renderItems(render)
+//   })
+//   .catch(err => console.log(err));
+
+// api.getUserProfile()
+//   .then(render => {
+//     userInfo.setUserInfo(render);
+//     userId = render._id;
+//   })
+//   .catch(err => console.log(err));
 
 const defaultCardList = new Section({
   // items: initialCards,
+  // items: [],
   renderer: (item) => {
       const card = createCard(item)
       defaultCardList.addItem(card);

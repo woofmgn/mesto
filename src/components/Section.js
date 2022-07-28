@@ -1,4 +1,4 @@
-// import Api from "../components/Api.js"
+import Api from "../components/Api.js"
 // export default class Section {
 //   constructor({ items, renderer }, containerItem) {
 //     this._renderedItems = items;
