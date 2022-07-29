@@ -37,21 +37,13 @@ const api = new Api(settingsApi);
 
 let userId;
 
-// Promise.all([api.getInitialUser(),api.getInitialCards()])
-//     .then(([userData,cards])=>{
-//         userInfo.setUserInfo(userData);
-//         userId=userData._id;
-//         cards.reverse().map((card) => renderCard(card));
-//     })
-//     .catch((err) => {
-//         console.log(`Ошибка: ${err}`);
-//     })
-
 Promise.all([api.getInitialCards(), api.getUserProfile()])
     .then(([cards, userProfile]) => {
         userInfo.setUserInfo(userProfile);
         userId = userProfile._id;
         defaultCardList.renderItems(cards);
+        console.log(userProfile);
+        console.log(userId);
     })
     .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -72,7 +64,6 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
 
 const defaultCardList = new Section({
   // items: initialCards,
-  // items: [],
   renderer: (item) => {
       const card = createCard(item)
       defaultCardList.addItem(card);
@@ -85,15 +76,35 @@ function createCard(cardElement) {
   return cardItem;
 }
 
+// function handleEditProfileFormSubmit(item) {
+//   userInfo.setUserInfo(item);
+//   popupUserProfile.close();
+// };
+
 function handleEditProfileFormSubmit(item) {
-  userInfo.setUserInfo(item);
-  popupUserProfile.close();
+  api.setUserProfile(item)
+    .then(item => {
+      userInfo.setUserInfo(item)
+      popupUserProfile.close();
+    })
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    })
 };
 
+// function handleAddCardsSubmit(cardElement) {
+//   const userCard = createCard(cardElement);
+//   defaultCardList.addItem(userCard);
+//   newPlaceForm.close();
+// };
+
 function handleAddCardsSubmit(cardElement) {
-  const userCard = createCard(cardElement);
-  defaultCardList.addItem(userCard);
-  newPlaceForm.close();
+  api.addNewCard(cardElement.name, cardElement.link)
+    .then(cardElement => {
+      const userCard = createCard(cardElement);
+      defaultCardList.addItem(userCard);
+      newPlaceForm.close();
+    })
 };
 
 buttonOpenPopupProfile.addEventListener('click', () => {

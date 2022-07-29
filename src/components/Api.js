@@ -28,17 +28,35 @@ export default class Api {
 
   setUserProfile(data) {
     return fetch(`${this._url}/users/me`, {
-    headers: this._header,
+    method: 'PATCH',
+    headers: this._headers,
     body: JSON.stringify({
-      name: data.name,
-      about: data.about
+      name: data.formName,
+      about: data.formJob
     })
   })
     .then(res => {
       if(res.ok) {
         return res.json();
       }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      return Promise.reject(`Ошибка Api: ${res.status}`);
+    })
+  }
+
+  addNewCard(name, link) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then(res => {
+        if(res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка Api: ${res.status}`);
+      });
   }
 }
