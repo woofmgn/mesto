@@ -2,6 +2,7 @@ export class Card {
   constructor(data, cardSelector, handleOpenImgPopup) {
     this._name = data.name;
     this._link = data.link;
+    this._like = data.likes;
     this._cardSelector = cardSelector;
     this._handleOpenImgPopup = handleOpenImgPopup;
   }
@@ -21,9 +22,11 @@ export class Card {
 
     this._likeButton = this._element.querySelector('.element__like-button');
     this._elementImage = this._element.querySelector('.element__image');
+    this._elementLikeCounter = this._element.querySelector('.element__like-counter');
 
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
+    this._elementLikeCounter.textContent = this._like.length;
     this._element.querySelector('.element__title').textContent = this._name;
 
     this._addListeners();
