@@ -18,6 +18,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js"
+import PopupWithDelCard from '../components/PopupWithDelCard.js';
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
@@ -25,13 +26,13 @@ const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace
 const popupOpenImage = new PopupWithImage('.popup_type_image');
 const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit);
 const popupUserProfile = new PopupWithForm('.popup_type_profile', handleEditProfileFormSubmit);
+const popupDeleteCard = new PopupWithDelCard('.popup_type_delete', handleDeleteCard);
 
 const userInfo = new UserInfo(classListObject);
 
 function handleCardClick(link, title) {
   popupOpenImage.open(link, title);
 }
-
 
 const api = new Api(settingsApi);
 
@@ -49,19 +50,6 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
         console.log(`Ошибка: ${err}`);
     })
 
-// api.getInitialCards()
-//   .then(render => {
-//     defaultCardList.renderItems(render)
-//   })
-//   .catch(err => console.log(err));
-
-// api.getUserProfile()
-//   .then(render => {
-//     userInfo.setUserInfo(render);
-//     userId = render._id;
-//   })
-//   .catch(err => console.log(err));
-
 const defaultCardList = new Section({
   // items: initialCards,
   renderer: (item) => {
@@ -71,15 +59,10 @@ const defaultCardList = new Section({
 }, cardListElement);
 
 function createCard(cardElement) {
-  const card = new Card(cardElement, '.card-template', handleCardClick);
+  const card = new Card(cardElement, '.card-template', handleCardClick, handlePopupDelCard, userId);
   const cardItem = card.generateCard();
   return cardItem;
 }
-
-// function handleEditProfileFormSubmit(item) {
-//   userInfo.setUserInfo(item);
-//   popupUserProfile.close();
-// };
 
 function handleEditProfileFormSubmit(item) {
   api.setUserProfile(item)
@@ -92,12 +75,6 @@ function handleEditProfileFormSubmit(item) {
     })
 };
 
-// function handleAddCardsSubmit(cardElement) {
-//   const userCard = createCard(cardElement);
-//   defaultCardList.addItem(userCard);
-//   newPlaceForm.close();
-// };
-
 function handleAddCardsSubmit(cardElement) {
   api.addNewCard(cardElement.name, cardElement.link)
     .then(cardElement => {
@@ -106,6 +83,22 @@ function handleAddCardsSubmit(cardElement) {
       newPlaceForm.close();
     })
 };
+
+function handlePopupDelCard(data) {
+  popupDeleteCard.open();
+  popupDeleteCard.ownerCard(data);
+}
+
+function handleDeleteCard(cardElement) {
+  api.delCard(cardElement._cardId)
+    .then(() => {
+      console.log(cardElement._cardId);
+    })
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    })
+  cardElement.handleDeleteCard();
+}
 
 buttonOpenPopupProfile.addEventListener('click', () => {
   const inputList = userInfo.getUserInfo();
@@ -127,11 +120,7 @@ buttonOpenPopupAddCards.addEventListener('click', () => {
 newPlaceForm.setEventListeners();
 popupUserProfile.setEventListeners();
 popupOpenImage.setEventListeners();
+popupDeleteCard.setEventListeners();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
-
-
-
-// const api = new Api(settingsApi);
-// console.log(api.getInitialCards());

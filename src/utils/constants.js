@@ -55,12 +55,12 @@ export {
 //     return Promise.reject(`Ошибка Api: ${res.status}`);
 //   });
 
-// fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
-//   headers: {
-//     authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
+fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+  headers: {
+    authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
