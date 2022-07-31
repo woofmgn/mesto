@@ -13,6 +13,7 @@
     </header>
     <main class="content">
       <section class="profile">
+        <!-- <img class="profile__image" src="" alt="Фото профиля"> -->
         <img class="profile__image" src="<%=require('../src/images/profile-image.png')%>" alt="Фото профиля">
         <div class="profile__info">
           <div class="profile__user">
@@ -70,13 +71,27 @@
       </figure>
     </div>
   </div>
+  <div class="popup popup_type_delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="popup__close-window" type="button"></button>
+      <form class="popup__form popup__form_type_delete form" name="new-place" novalidate>
+        <fieldset class="popup__input-container">
+          <button class="popup__form-button" type="submit">Да</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
   <template class="card-template">
     <li class="element__item">
       <img class="element__image" src="#" alt="#">
       <button class="element__trash-button" type="button"></button>
       <div class="element__info">
         <h2 class="element__title"></h2>
-        <button class="element__like-button" type="button"></button>
+        <div class="element__like-container">
+          <button class="element__like-button" type="button"></button>
+          <p class="element__like-counter"></p>
+        </div>
       </div>
     </li>
   </template>
