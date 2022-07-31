@@ -1,11 +1,8 @@
 .element__like-button {
   max-width: 22px;
   width: 100%;
-<<<<<<< HEAD
-=======
   max-height: 19px;
   height: 100%;
->>>>>>> develop/api
   background-color: #FFFFFF;
   background-image: url(../../../images/element--like-button.svg);
   background-size: contain;

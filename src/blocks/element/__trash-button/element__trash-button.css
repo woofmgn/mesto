@@ -12,10 +12,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-<<<<<<< HEAD
-=======
   visibility: hidden;
->>>>>>> develop/api
 }
 
 .element__trash-button:hover {

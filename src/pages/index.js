@@ -68,7 +68,7 @@ function handleEditProfileFormSubmit(item) {
   api.setUserProfile(item)
     .then(item => {
       userInfo.setUserInfo(item)
-      popupUserProfile.close();
+  popupUserProfile.close();
     })
     .catch(err => {
       console.log(`Ошибка: ${err}`);
@@ -78,9 +78,9 @@ function handleEditProfileFormSubmit(item) {
 function handleAddCardsSubmit(cardElement) {
   api.addNewCard(cardElement.name, cardElement.link)
     .then(cardElement => {
-      const userCard = createCard(cardElement);
-      defaultCardList.addItem(userCard);
-      newPlaceForm.close();
+  const userCard = createCard(cardElement);
+  defaultCardList.addItem(userCard);
+  newPlaceForm.close();
     })
 };
 
