@@ -55,12 +55,27 @@ export {
 //     return Promise.reject(`Ошибка Api: ${res.status}`);
 //   });
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
-  headers: {
-    authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+// fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+//   headers: {
+//     authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+
+
+  // fetch(`https://mesto.nomoreparties.co/v1/cohort-47/cards/'62e583751aedd50a87b18c96'`, {
+  //   method: 'DELETE',
+  //   headers: {
+  //     authorization: 'fa1c93d9-5a20-441f-a3de-44abfb1a5bd7',
+  //     'Content-Type': 'application/json'
+  //     }
+  // })
+  //   .then(res => {
+  //     if(res.ok) {
+  //       return res.json();
+  //     }
+  //     return Promise.reject(`Ошибка Api: ${res.status}`);
+  //   });
