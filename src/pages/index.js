@@ -48,8 +48,6 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
         userInfo.setUserInfo(userProfile);
         userId = userProfile._id;
         defaultCardList.renderItems(cards);
-        console.log(userProfile);
-        console.log(userId);
     })
     .catch((err) => {
         console.log(`Ошибка: ${err}`);
