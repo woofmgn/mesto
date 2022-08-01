@@ -7,10 +7,11 @@ import {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
+  formElementUserAvatar,
+  buttonOpenPopupNewAvatar,
   settingsApi
   } from '../utils/constants.js';
 
-import { initialCards } from "../utils/initial-cards.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -22,10 +23,14 @@ import PopupWithDelCard from '../components/PopupWithDelCard.js';
 
 const profileValidator = new FormValidator(classListObject, formElementProfile);
 const newPlaceValidator = new FormValidator(classListObject, formElementNewPlace);
+const userProfileAvatar = new FormValidator(classListObject, formElementUserAvatar);
 
 const popupOpenImage = new PopupWithImage('.popup_type_image');
+
 const newPlaceForm = new PopupWithForm('.popup_type_cards', handleAddCardsSubmit);
 const popupUserProfile = new PopupWithForm('.popup_type_profile', handleEditProfileFormSubmit);
+const popupUserAvatar = new PopupWithForm('.popup_type_avatar', handleNewAvatarSubmit)
+
 const popupDeleteCard = new PopupWithDelCard('.popup_type_delete', handleDeleteCard);
 
 const userInfo = new UserInfo(classListObject);
@@ -51,7 +56,6 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
     })
 
 const defaultCardList = new Section({
-  // items: initialCards,
   renderer: (item) => {
       const card = createCard(item)
       defaultCardList.addItem(card);
@@ -59,7 +63,33 @@ const defaultCardList = new Section({
 }, cardListElement);
 
 function createCard(cardElement) {
-  const card = new Card(cardElement, '.card-template', handleCardClick, handlePopupDelCard, userId);
+  const card = new Card(
+    cardElement,
+    '.card-template',
+     handleCardClick,
+     handlePopupDelCard,
+     userId,
+     () => {
+       api.addLikeCard(cardElement._id)
+        .then(cardElement => {
+          card.checkCountLikes(cardElement);
+          card.addLikeCard();
+         })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        })
+     },
+     () => {
+        api.delLikeCard(cardElement._id)
+          .then(cardElement => {
+          card.checkCountLikes(cardElement);
+          card.delLikeCard();
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        })
+     }
+     );
   const cardItem = card.generateCard();
   return cardItem;
 }
@@ -83,6 +113,18 @@ function handleAddCardsSubmit(cardElement) {
   newPlaceForm.close();
     })
 };
+
+function handleNewAvatarSubmit(item) {
+  api.setUserAvatar(item)
+    .then(item => {
+      userInfo.setUserInfo(item);
+      popupUserAvatar.close();
+      console.log(item);
+    })
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    })
+}
 
 function handlePopupDelCard(data) {
   popupDeleteCard.open();
@@ -115,12 +157,18 @@ buttonOpenPopupAddCards.addEventListener('click', () => {
   newPlaceForm.open();
 });
 
-// defaultCardList.renderItems();
+buttonOpenPopupNewAvatar.addEventListener('click', () => {
+  userProfileAvatar.resetError();
+  userProfileAvatar.disabledButtonSubmit;
+  popupUserAvatar.open();
+})
 
 newPlaceForm.setEventListeners();
 popupUserProfile.setEventListeners();
 popupOpenImage.setEventListeners();
 popupDeleteCard.setEventListeners();
+popupUserAvatar.setEventListeners();
 
 profileValidator.enableValidation();
 newPlaceValidator.enableValidation();
+userProfileAvatar.enableValidation();
