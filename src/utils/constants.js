@@ -15,6 +15,8 @@ const formElementProfile = document.querySelector('.popup__form_type_profile');
 const buttonOpenPopupAddCards = document.querySelector('.profile__add-button');
 const cardListElement = document.querySelector('.element');
 const formElementNewPlace = document.querySelector('.popup__form_type_cards');
+const formElementUserAvatar = document.querySelector('.popup__form_type_avatar');
+const buttonOpenPopupNewAvatar = document.querySelector('.profile__image');
 
 const settingsApi = {
     url: 'https://mesto.nomoreparties.co/v1/cohort-47',
@@ -34,6 +36,8 @@ export {
   buttonOpenPopupAddCards,
   cardListElement,
   formElementNewPlace,
+  formElementUserAvatar,
+  buttonOpenPopupNewAvatar,
   settingsApi
   }
 
@@ -55,15 +59,15 @@ export {
 //     return Promise.reject(`Ошибка Api: ${res.status}`);
 //   });
 
-// fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
-//   headers: {
-//     authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
+fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+  headers: {
+    authorization: 'e4f550f7-85d7-46b0-9c73-72a0998caf95'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
 
 
   // fetch(`https://mesto.nomoreparties.co/v1/cohort-47/cards/'62e583751aedd50a87b18c96'`, {

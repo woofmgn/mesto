@@ -75,9 +75,22 @@
     <div class="popup__container">
       <h2 class="popup__title">Вы уверены?</h2>
       <button class="popup__close-window" type="button"></button>
-      <form class="popup__form popup__form_type_delete form" name="new-place" novalidate>
+      <form class="popup__form popup__form_type_delete form" name="del-popup" novalidate>
         <fieldset class="popup__input-container">
           <button class="popup__form-button" type="submit">Да</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <button class="popup__close-window" type="button"></button>
+      <form class="popup__form popup__form_type_avatar form" name="avatar-popup" novalidate>
+        <fieldset class="popup__input-container">
+          <input class="popup__form-item popup__form-item_type_avatar" id="input-avatar" type="url" name="link" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error input-avatar-error"></span>
+          <button class="popup__form-button" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>
