@@ -95,6 +95,7 @@ function createCard(cardElement) {
 }
 
 function handleEditProfileFormSubmit(item) {
+  popupUserProfile.renderLoading(true);
   api.setUserProfile(item)
     .then(item => {
       userInfo.setUserInfo(item)
@@ -103,18 +104,29 @@ function handleEditProfileFormSubmit(item) {
     .catch(err => {
       console.log(`Ошибка: ${err}`);
     })
+    .finally(res => {
+      popupUserProfile.renderLoading(false);
+    })
 };
 
 function handleAddCardsSubmit(cardElement) {
+  newPlaceForm.renderLoading(true);
   api.addNewCard(cardElement.name, cardElement.link)
     .then(cardElement => {
   const userCard = createCard(cardElement);
   defaultCardList.addItem(userCard);
   newPlaceForm.close();
     })
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(res => {
+      newPlaceForm.renderLoading(false);
+    })
 };
 
 function handleNewAvatarSubmit(item) {
+  popupUserAvatar.renderLoading(true);
   api.setUserAvatar(item)
     .then(item => {
       userInfo.setUserInfo(item);
@@ -123,6 +135,9 @@ function handleNewAvatarSubmit(item) {
     })
     .catch(err => {
       console.log(`Ошибка: ${err}`);
+    })
+    .finally(res => {
+      popupUserAvatar.renderLoading(false);
     })
 }
 
