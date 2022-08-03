@@ -47,7 +47,10 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
     .then(([cards, userProfile]) => {
         userInfo.setUserInfo(userProfile);
         userId = userProfile._id;
-        defaultCardList.renderItems(cards);
+        const inverseArr = cards.reverse().map(item => {
+          return item;
+        })
+        defaultCardList.renderItems(inverseArr);
     })
     .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -129,7 +132,6 @@ function handleNewAvatarSubmit(item) {
     .then(item => {
       userInfo.setUserInfo(item);
       popupUserAvatar.close();
-      console.log(item);
     })
     .catch(err => {
       console.log(`Ошибка: ${err}`);
@@ -147,7 +149,7 @@ function handlePopupDelCard(data) {
 function handleDeleteCard(cardElement) {
   api.delCard(cardElement._cardId)
     .then(() => {
-      console.log(cardElement._cardId);
+      popupDeleteCard.close();
     })
     .catch(err => {
       console.log(`Ошибка: ${err}`);

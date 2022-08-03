@@ -7,6 +7,8 @@ export class FormValidator {
     this._inputErrorClass = classListObject.inputErrorClass;
     this._errorClass = classListObject.errorClass;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
     // проверяем инпуты на валидность
@@ -36,9 +38,6 @@ export class FormValidator {
 
     // слушаем все инпуты на правильность ввода
   _setEventListener() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
