@@ -17,3 +17,10 @@
 - реализация API
 
 [https://woofmgn.github.io/mesto/](https://woofmgn.github.io/mesto/ "https://woofmgn.github.io/mesto/")
+
+___
+
+#### Для работы проекта необходимо установить npm-пакеты из зависимостей,
+#### для этого в каталоге с проектом выполните:
+### `npm install`
+___
